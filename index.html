@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="theme-color" content="#030508">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="EcoTech">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>EcoTech: Engenharia & Inovação Sustentável | Feira Escolar 2026</title>
+  <meta name="description" content="Plataforma de alta tecnologia para o estande da feira escolar com documentário oficial, galeria de bastidores, minigames e simulador.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Cabeçalho de Alto Padrão (Dark Glass Mobile-First) -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="brand-section">
+        <div class="brand-logo-frame" title="EcoTech: Engenharia & Inovação Sustentável">
+          <svg class="brand-svg-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="logo-grad-leaf" x1="10" y1="90" x2="90" y2="10" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="var(--accent-primary, #10b981)"/>
+                <stop offset="100%" stop-color="#06b6d4"/>
+              </linearGradient>
+              <linearGradient id="logo-grad-tech" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#06b6d4"/>
+                <stop offset="100%" stop-color="var(--accent-primary, #10b981)"/>
+              </linearGradient>
+            </defs>
+            <!-- Hexágono de Tecnologia Sustentável -->
+            <polygon points="50,6 88,28 88,72 50,94 12,72 12,28" stroke="url(#logo-grad-tech)" stroke-width="3.5" fill="rgba(6, 182, 212, 0.08)" stroke-linejoin="round"/>
+            <circle cx="50" cy="6" r="3.5" fill="#06b6d4"/>
+            <circle cx="88" cy="28" r="3" fill="var(--accent-primary, #10b981)"/>
+            <circle cx="12" cy="28" r="3" fill="var(--accent-primary, #10b981)"/>
+            <circle cx="50" cy="94" r="3" fill="#06b6d4"/>
+            <!-- Folha Orgânica Geométrica com Nervuras Cibernéticas -->
+            <path d="M50,22 C32,28 26,48 30,68 C35,76 46,80 50,78 C54,80 65,76 70,68 C74,48 68,28 50,22 Z" fill="url(#logo-grad-leaf)"/>
+            <path d="M50,30 L50,70" stroke="#030508" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M50,44 L60,37" stroke="#030508" stroke-width="2" stroke-linecap="round"/>
+            <path d="M50,54 L40,47" stroke="#030508" stroke-width="2" stroke-linecap="round"/>
+            <path d="M50,62 L58,56" stroke="#030508" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="50" cy="30" r="2.5" fill="#ffffff"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="brand-title" id="project-title">
+            EcoTech: <span class="highlight">Engenharia & Sustentabilidade</span>
+          </h1>
+          <div class="brand-subtitle-row">
+            <span class="brand-subtitle" id="project-subtitle">Feira Multidisciplinar Escolar 2026</span>
+            <span class="team-badge-pill" id="project-team-badge">Grupo 2 • Sophia Drumond, Miguel e Equipe</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <button id="btn-header-poster" class="ctrl-btn" title="Gerar Cartaz do QR Code para o Estande">
+          <span>📱</span><span class="ctrl-label">Cartaz QR</span>
+        </button>
+        <button id="audio-toggle-btn" class="ctrl-btn" title="Ligar ou Desligar Efeitos Sonoros">
+          <span>🔊</span><span class="ctrl-label">Som</span>
+        </button>
+        <button id="fullscreen-toggle-btn" class="ctrl-btn" title="Modo Totem em Tela Cheia">
+          <span>⛶</span><span class="ctrl-label">Totem</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Barra de Navegação Sublime (Mobile Dock no Celular) -->
+  <nav class="navigation-bar">
+    <div class="nav-tabs-container">
+      <button class="nav-tab-btn active" data-tab="totem">
+        <span>📸</span><span>Totem</span>
+      </button>
+      <button class="nav-tab-btn" data-tab="games">
+        <span>🎮</span><span>Jogos</span>
+      </button>
+      <button class="nav-tab-btn" data-tab="doc">
+        <span>🎬</span><span>Vídeo</span>
+      </button>
+      <button class="nav-tab-btn" data-tab="mural">
+        <span>💬</span><span>Mural</span>
+      </button>
+      <button class="nav-tab-btn" data-tab="dossier">
+        <span>📚</span><span>Dossiê</span>
+      </button>
+      <button class="nav-tab-btn" data-tab="gallery">
+        <span>🖼️</span><span>Bastidores</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Área Principal de Conteúdo -->
+  <main class="main-content">
+
+    <!-- ====================================================================
+         SEÇÃO 0: TOTEM DE FOTOS (GOOGLE DRIVE & DOWNLOAD HD)
+         ==================================================================== -->
+    <section id="section-totem" class="app-section active">
+      <div class="section-headline-group">
+        <span class="section-tagline">Registro dos Visitantes no Estande</span>
+        <h2 class="section-title">Totem de Fotos & Galeria Oficial da Feira</h2>
+        <p class="section-subtitle">
+          Tirou sua foto no totem de papelão do estande da EcoTech? Ela é enviada diretamente para a nossa nuvem no Google Drive e fica disponível aqui em resolução máxima para você inspecionar, baixar em HD e compartilhar com todos!
+        </p>
+      </div>
+
+      <!-- Banner de Conexão com Google Drive e Compartilhamento -->
+      <div class="totem-banner-card">
+        <div class="totem-banner-text">
+          <h3>📂 Nuvem Oficial do Google Drive</h3>
+          <p>
+            As fotos tiradas no totem de papelão pelos visitantes e jurados são sincronizadas na pasta do Google Drive da nossa turma. Clique abaixo para abrir a pasta de arquivos originais ou compartilhe o site do estande no WhatsApp!
+          </p>
+        </div>
+        <div class="totem-action-bar">
+          <button id="btn-open-google-drive" class="btn-drive-glow">
+            <span>Abrir Pasta do Google Drive</span> <span>📂</span>
+          </button>
+          <button id="btn-share-site-whatsapp" class="btn-whatsapp-glow">
+            <span>Compartilhar via WhatsApp</span> <span>💬</span>
+          </button>
+          <button id="btn-copy-site-link" class="btn-copy-link-pill">
+            <span>Copiar Link do Estande 🔗</span>
+          </button>
+          <button id="btn-open-poster-modal" class="btn-copy-link-pill" style="border-color: rgba(234, 179, 8, 0.5); color: #fbbf24;">
+            <span>🖨️ Cartaz QR Code (A4) 📄</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Grade de Fotos do Totem -->
+      <div id="totem-photos-grid" class="totem-grid"></div>
+    </section>
+
+    <!-- ====================================================================
+         SEÇÃO 1: DOCUMENTÁRIO & APRESENTAÇÃO GERAL
+         ==================================================================== -->
+    <section id="section-doc" class="app-section hidden">
+      <div class="section-headline-group">
+        <span class="section-tagline">Produção Audiovisual & Pesquisa</span>
+        <h2 class="section-title">O Futuro em Nossas Mãos: O Documentário</h2>
+        <p class="section-subtitle">
+          Apresentação institucional produzida pelo Grupo 2 para a Feira Multidisciplinar, explorando os desafios urbanos, as soluções de engenharia verde e a urgência da sustentabilidade.
+        </p>
+      </div>
+
+      <div class="glass-panel doc-cinema-container">
+        <!-- Frame do Player de Vídeo -->
+        <div class="doc-player-frame" id="doc-player-container">
+          <div id="doc-player-inner" style="width: 100%; height: 100%; position: relative;">
+            <div id="doc-placeholder" class="doc-video-placeholder">
+              <div class="doc-badge-live">DOCUMENTÁRIO OFICIAL</div>
+              <div class="doc-play-btn-pulse" id="doc-play-trigger">▶</div>
+              <h3 style="font-family: var(--font-display); font-size: 1.5rem; color: #fff; font-weight: 800; margin-bottom: 0.35rem;">
+                Assistir à Apresentação Completa
+              </h3>
+              <p style="font-size: 0.9rem; color: var(--text-muted); max-width: 480px;">
+                Clique para reproduzir o documentário institucional do projeto. (Link configurável no Painel Admin)
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ficha Técnica e Sinopse -->
+        <div class="doc-info-side">
+          <div>
+            <span class="team-badge-pill" style="margin-bottom: 0.5rem;">🌿 Sinopse Executiva</span>
+            <h3 class="doc-film-title" id="doc-title-display">Engenharia, Cidade & Clima</h3>
+          </div>
+
+          <p class="doc-synopsis" id="doc-synopsis-display">
+            Uma jornada investigativa sobre como a engenharia sustentável, a transição para matrizes 100% renováveis e a conscientização visual coletiva transformam as cidades de polos de poluição em ecossistemas de vida, saúde e progresso.
+          </p>
+
+          <div class="doc-credits-grid">
+            <div class="doc-credit-box">
+              <span class="doc-credit-label">Pesquisa & Criação</span>
+              <span class="doc-credit-val" id="doc-credit-team">Grupo 2</span>
+            </div>
+            <div class="doc-credit-box">
+              <span class="doc-credit-label">Orientação</span>
+              <span class="doc-credit-val" id="doc-credit-orient">Coordenação Pedagógica</span>
+            </div>
+            <div class="doc-credit-box">
+              <span class="doc-credit-label">Instituição</span>
+              <span class="doc-credit-val" id="doc-credit-school">Sophia Drumond</span>
+            </div>
+            <div class="doc-credit-box">
+              <span class="doc-credit-label">Edição</span>
+              <span class="doc-credit-val" id="doc-credit-year">2026</span>
+            </div>
+          </div>
+
+          <div style="margin-top: 1rem;">
+            <button class="btn-primary-glow" onclick="window.appMaster.switchTab('gallery')">
+              <span>Ver Fotos dos Bastidores</span> <span>📸</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SEÇÃO 2: BASTIDORES & GALERIA (MAKING OF DA FEIRA)
+         ==================================================================== -->
+    <section id="section-gallery" class="app-section">
+      <div class="section-headline-group">
+        <span class="section-tagline">Registro & Processo Criativo</span>
+        <h2 class="section-title">Bastidores & Making Of do Projeto</h2>
+        <p class="section-subtitle">
+          Veja o passo a passo de como nosso trabalho foi construído: desde as primeiras pesquisas e testes práticos até a montagem final do nosso estande.
+        </p>
+      </div>
+
+      <!-- Filtros de Categoria -->
+      <div class="gallery-filter-bar">
+        <button class="gallery-filter-btn active" data-filter="all">Todos os Registros (4)</button>
+        <button class="gallery-filter-btn" data-filter="planejamento">Planejamento & Ideação</button>
+        <button class="gallery-filter-btn" data-filter="construcao">Construção do Protótipo</button>
+        <button class="gallery-filter-btn" data-filter="feira">Montagem do Estande</button>
+      </div>
+
+      <!-- Grid de Fotos com Zoom e Lightbox -->
+      <div id="gallery-cards-grid" class="gallery-grid">
+        <!-- Renderizado dinamicamente via JavaScript -->
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SEÇÃO 3: ARENA DE JOGOS & INTERATIVIDADE
+         ==================================================================== -->
+    <section id="section-games" class="app-section">
+      <div class="section-headline-group">
+        <span class="section-tagline">Interatividade do Estande</span>
+        <h2 class="section-title">Arena de Desafios & Minigames</h2>
+        <p class="section-subtitle">
+          Escolha um jogo para testar sua agilidade, testar seus conhecimentos e concorrer a brindes do nosso estande!
+        </p>
+      </div>
+
+      <!-- Sub-navegador dos 4 Jogos -->
+      <div class="games-subnav">
+        <button class="games-subnav-btn active" data-gametab="quiz">
+          <span>🏆</span> EcoQuiz Show Pro
+        </button>
+        <button class="games-subnav-btn" data-gametab="sort">
+          <span>⚡</span> EcoSort Express (30s)
+        </button>
+        <button class="games-subnav-btn" data-gametab="city">
+          <span>🏙️</span> EcoCity Simulator
+        </button>
+        <button class="games-subnav-btn" data-gametab="wheel">
+          <span>🎡</span> Roleta da Sorte
+        </button>
+      </div>
+
+      <!-- JOGO 1: ECOQUIZ SHOW -->
+      <div id="game-subtab-quiz" class="game-subtab-pane active">
+        <div class="quiz-wrapper">
+          <!-- Tela Inicial do Quiz -->
+          <div id="quiz-start-screen" class="glass-panel quiz-hero-card">
+            <div class="quiz-hero-icon">🏆</div>
+            <h2 class="section-title" style="font-size: 2.2rem; margin-bottom: 0.75rem;">Desafio do Estande: EcoQuiz</h2>
+            <p class="section-subtitle" style="margin-bottom: 2rem;">
+              Responda a perguntas desafiadoras com 15 segundos no cronômetro, faça combos multiplicadores e entre para o Hall da Fama da feira!
+            </p>
+            <button id="quiz-start-btn" class="btn-primary-glow">
+              <span>Iniciar o Quiz!</span> <span>🚀</span>
+            </button>
+          </div>
+
+          <!-- Tela de Jogo do Quiz -->
+          <div id="quiz-game-screen" class="glass-panel hidden">
+            <div class="quiz-header-bar">
+              <span id="quiz-progress" class="team-badge-pill" style="font-size: 0.85rem;">Pergunta 1 de 8</span>
+              <span id="quiz-streak-badge" class="team-badge-pill hidden" style="border-color: #f59e0b; color: #fbbf24;">🔥 Combo x1.2</span>
+              <div style="font-size: 1.15rem; font-weight: 800; color: #34d399;">
+                <span>Pontos: </span><span id="quiz-score-val">0</span>
+              </div>
+            </div>
+
+            <div class="quiz-timer-track">
+              <div id="quiz-timer-bar" class="quiz-timer-progress"></div>
+            </div>
+
+            <div class="quiz-question-card">
+              <h3 id="quiz-question" class="quiz-question-text">Carregando pergunta...</h3>
+            </div>
+
+            <div id="quiz-options" class="quiz-options-grid"></div>
+
+            <div id="quiz-feedback" class="quiz-feedback-card hidden">
+              <h4 id="feedback-title" style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 700;">Correto!</h4>
+              <p id="feedback-text" style="font-size: 0.95rem; color: #e2e8f0;"></p>
+              <button id="feedback-btn" class="btn-primary-glow" style="align-self: flex-start; padding: 0.6rem 1.5rem; font-size: 0.92rem;">
+                Próxima Pergunta →
+              </button>
+            </div>
+          </div>
+
+          <!-- Tela de Fim do Quiz -->
+          <div id="quiz-end-screen" class="glass-panel quiz-hero-card hidden">
+            <div class="quiz-hero-icon">🎉</div>
+            <h2 class="section-title" style="font-size: 2.2rem;">Resultado Conquistado!</h2>
+            <div style="margin: 1.5rem 0;">
+              <div style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Pontuação Final</div>
+              <div id="final-score-val" style="font-family: var(--font-display); font-size: 3.5rem; font-weight: 900; color: var(--accent-primary);">0</div>
+              <div id="final-badge-title" style="font-size: 1.3rem; font-weight: 700; color: #38bdf8; margin-top: 0.25rem;">Mestre da Sustentabilidade</div>
+              <p id="final-badge-desc" style="font-size: 0.95rem; color: var(--text-muted); max-width: 500px; margin: 0.5rem auto 0 auto;"></p>
+            </div>
+
+            <div style="max-width: 420px; margin: 1.5rem auto; display: flex; gap: 0.5rem;">
+              <input type="text" id="player-name-input" class="form-input" placeholder="Seu nome ou turma..." maxlength="25" style="flex: 1;">
+              <button id="save-score-btn" class="btn-primary-glow" style="padding: 0.75rem 1.25rem; font-size: 0.9rem;">
+                Salvar Placar 📝
+              </button>
+            </div>
+
+            <button id="quiz-restart-btn" class="ctrl-btn" style="display: inline-flex; margin: 1rem auto 0 auto; padding: 0.75rem 2rem;">
+              Jogar Novamente 🔄
+            </button>
+          </div>
+
+          <!-- Placar de Líderes Local -->
+          <div class="leaderboard-section">
+            <h3 style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; color: #fff; display: flex; align-items: center; gap: 0.5rem;">
+              <span>🏆</span> Ranking dos Melhores do Dia
+            </h3>
+            <div id="leaderboard-list" class="leaderboard-list"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- JOGO 2: ECOSORT EXPRESS -->
+      <div id="game-subtab-sort" class="game-subtab-pane">
+        <div class="ecosort-wrapper">
+          <div id="ecosort-start-screen" class="glass-panel quiz-hero-card">
+            <div class="quiz-hero-icon">⚡</div>
+            <h2 class="section-title" style="font-size: 2.2rem; margin-bottom: 0.75rem;">EcoSort Express: 30 Segundos!</h2>
+            <p class="section-subtitle" style="margin-bottom: 2rem;">
+              Separe os itens o mais rápido possível! Arraste a carta ou utilize as teclas de seta para classificar o que é <strong>Sustentável/Renovável</strong> e o que é <strong>Poluente/Rejeito</strong>!
+            </p>
+            <button id="ecosort-start-btn" class="btn-primary-glow">
+              <span>Iniciar Rodada Rápida!</span> <span>⏱️</span>
+            </button>
+          </div>
+
+          <div id="ecosort-game-screen" class="glass-panel hidden">
+            <div class="sort-stats-bar">
+              <div>
+                <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Tempo Restante</div>
+                <div id="ecosort-timer" style="font-family: var(--font-display); font-size: 1.6rem; font-weight: 800; color: #fff;">30s</div>
+              </div>
+              <div>
+                <span id="ecosort-streak" class="team-badge-pill hidden" style="border-color: #f59e0b; color: #fbbf24;">🔥 Combo x1.4</span>
+              </div>
+              <div style="text-align: right;">
+                <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Pontuação</div>
+                <div id="ecosort-score" style="font-family: var(--font-display); font-size: 1.6rem; font-weight: 800; color: #34d399;">0</div>
+              </div>
+            </div>
+
+            <div class="sort-deck-area">
+              <div id="sort-card" class="sort-card">
+                <div id="sort-card-icon" style="font-size: 3.5rem; margin-bottom: 0.5rem;">☀️</div>
+                <h3 id="sort-card-title" style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 800; color: #fff;">Painel Solar</h3>
+                <p id="sort-card-desc" style="font-size: 0.85rem; color: var(--text-muted);">Gera energia limpa sem emissões de CO₂</p>
+              </div>
+            </div>
+
+            <div class="sort-actions-row">
+              <button id="sort-btn-clean" class="sort-action-btn clean">
+                <span>🌿 SUSTENTÁVEL</span>
+                <span style="font-size: 0.75rem; font-weight: 500; opacity: 0.8;">Renovável / Reciclável (←)</span>
+              </button>
+              <button id="sort-btn-polluter" class="sort-action-btn polluter">
+                <span>⚠️ POLUENTE</span>
+                <span style="font-size: 0.75rem; font-weight: 500; opacity: 0.8;">Rejeito / Tóxico (→)</span>
+              </button>
+            </div>
+          </div>
+
+          <div id="ecosort-end-screen" class="glass-panel quiz-hero-card hidden">
+            <div class="quiz-hero-icon">🏁</div>
+            <h2 class="section-title" style="font-size: 2.2rem;">Rodada Concluída!</h2>
+            <div id="ecosort-rank-title" style="font-size: 1.35rem; font-weight: 700; color: #38bdf8; margin: 0.5rem 0 1.5rem 0;">
+              Engenheiro Ecológico Lendário! 🏆
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; max-width: 500px; margin: 0 auto 2rem auto;">
+              <div class="metric-box">
+                <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Pontos</div>
+                <div id="ecosort-final-score" class="metric-val" style="color: #34d399;">0</div>
+              </div>
+              <div class="metric-box">
+                <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Acertos</div>
+                <div id="ecosort-correct-val" class="metric-val" style="color: #38bdf8;">0</div>
+              </div>
+              <div class="metric-box">
+                <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Precisão</div>
+                <div id="ecosort-accuracy-val" class="metric-val" style="color: #fbbf24;">100%</div>
+              </div>
+            </div>
+            <button id="ecosort-restart-btn" class="btn-primary-glow">
+              <span>Jogar Mais Uma Rodada 🔄</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- JOGO 3: ECOCITY SIMULATOR -->
+      <div id="game-subtab-city" class="game-subtab-pane">
+        <div class="simulator-layout">
+          <div class="glass-panel" style="display: flex; flex-direction: column; gap: 1.25rem;">
+            <h3 style="font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 0.5rem;">
+              <span>⚙️</span> Matriz de Energia da Cidade
+            </h3>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">
+              A cidade necessita de <strong>500 MW</strong> contínuos. Equilibre as fontes sustentáveis e evite o apagão sem elevar a poluição!
+            </p>
+
+            <div class="slider-group">
+              <div style="display: flex; justify-content: space-between; font-weight: 600;">
+                <span>☀️ Energia Solar</span>
+                <span id="val-solar" style="font-family: var(--font-display); font-weight: 800; color: var(--accent-primary);">160 MW</span>
+              </div>
+              <input type="range" id="slider-solar" class="range-slider" min="0" max="300" value="160" step="10">
+            </div>
+
+            <div class="slider-group">
+              <div style="display: flex; justify-content: space-between; font-weight: 600;">
+                <span>💨 Energia Eólica</span>
+                <span id="val-wind" style="font-family: var(--font-display); font-weight: 800; color: #38bdf8;">140 MW</span>
+              </div>
+              <input type="range" id="slider-wind" class="range-slider" min="0" max="300" value="140" step="10">
+            </div>
+
+            <div class="slider-group">
+              <div style="display: flex; justify-content: space-between; font-weight: 600;">
+                <span>💧 Hidrelétrica</span>
+                <span id="val-hydro" style="font-family: var(--font-display); font-weight: 800; color: #06b6d4;">150 MW</span>
+              </div>
+              <input type="range" id="slider-hydro" class="range-slider" min="0" max="300" value="150" step="10">
+            </div>
+
+            <div class="slider-group">
+              <div style="display: flex; justify-content: space-between; font-weight: 600;">
+                <span>🏭 Termelétrica Fóssil</span>
+                <span id="val-fossil" style="font-family: var(--font-display); font-weight: 800; color: #f43f5e;">70 MW</span>
+              </div>
+              <input type="range" id="slider-fossil" class="range-slider" min="0" max="450" value="70" step="10">
+            </div>
+
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <button id="preset-fossil" class="ctrl-btn" style="font-size: 0.8rem;">Passado Fóssil 🏭</button>
+              <button id="preset-balanced" class="ctrl-btn" style="font-size: 0.8rem;">Transição ⚖️</button>
+              <button id="preset-future" class="ctrl-btn" style="font-size: 0.8rem; border-color: var(--accent-primary); color: #34d399;">Futuro 100% Verde 🌿</button>
+            </div>
+          </div>
+
+          <div class="glass-panel" style="display: flex; flex-direction: column; gap: 1.25rem;">
+            <h3 style="font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; color: #fff;">
+              <span>🌆</span> Cidade em Tempo Real
+            </h3>
+
+            <div class="city-viewport">
+              <div id="city-sky" class="city-sky"></div>
+              <div id="city-smog" class="city-smog-overlay"></div>
+
+              <svg class="city-svg" viewBox="0 0 500 240" preserveAspectRatio="xMidYMax meet">
+                <path d="M0,170 Q120,130 250,165 T500,160 L500,240 L0,240 Z" fill="#070a12" opacity="0.8"/>
+                <rect x="340" y="145" width="45" height="55" fill="#1e293b" rx="3"/>
+                <rect x="350" y="125" width="10" height="25" fill="#334155"/>
+                <rect x="368" y="130" width="10" height="20" fill="#334155"/>
+                <g id="city-factory-smoke" class="factory-smoke" opacity="0.6">
+                  <circle cx="355" cy="115" r="10" fill="#94a3b8"/>
+                  <circle cx="373" cy="120" r="8" fill="#64748b"/>
+                </g>
+                <rect x="130" y="130" width="30" height="85" fill="#1e293b"/>
+                <rect x="165" y="105" width="35" height="110" fill="#334155"/>
+                <rect x="238" y="90" width="42" height="125" fill="#334155"/>
+                <rect x="172" y="115" width="6" height="6" fill="#fde047" opacity="0.8"/>
+                <rect x="245" y="105" width="8" height="8" fill="#38bdf8" opacity="0.9"/>
+                <polygon id="city-solar-glow" points="240,90 280,90 275,100 235,100" fill="#38bdf8" opacity="0.8"/>
+                <line x1="100" y1="105" x2="100" y2="185" stroke="#e2e8f0" stroke-width="3"/>
+                <g class="svg-turbine-blade">
+                  <circle cx="100" cy="105" r="4" fill="#ffffff"/>
+                  <line x1="100" y1="105" x2="100" y2="70" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                  <line x1="100" y1="105" x2="130" y2="122" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                  <line x1="100" y1="105" x2="70" y2="122" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                </g>
+                <g id="city-nature-layer">
+                  <circle cx="115" cy="205" r="14" fill="#10b981"/>
+                  <circle cx="315" cy="210" r="16" fill="#10b981"/>
+                  <rect x="0" y="215" width="500" height="25" fill="#042f2e"/>
+                </g>
+              </svg>
+            </div>
+
+            <div class="city-metrics-grid">
+              <div class="metric-box">
+                <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Geração Total</div>
+                <div id="city-energy-total" class="metric-val">520 / 500 MW</div>
+                <div id="city-energy-status" class="status-badge ideal">✅ Equilíbrio Perfeito</div>
+              </div>
+              <div class="metric-box">
+                <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Pegada de CO₂</div>
+                <div id="city-co2-val" class="metric-val" style="color: #f59e0b;">57.400 kg/h</div>
+              </div>
+              <div class="metric-box">
+                <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Qualidade do Ar (AQI)</div>
+                <div id="city-aqi-val" class="metric-val" style="color: #06b6d4;">59 (Bom)</div>
+              </div>
+              <div class="metric-box">
+                <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Aprovação Popular</div>
+                <div id="city-happiness-val" class="metric-val" style="color: #34d399;">88%</div>
+                <div class="happiness-bar-track">
+                  <div id="city-happiness-bar" class="happiness-bar-fill"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- JOGO 4: ROLETA DA FEIRA -->
+      <div id="game-subtab-wheel" class="game-subtab-pane">
+        <div class="glass-panel wheel-wrapper">
+          <h2 class="section-title" style="font-size: 2.2rem;">🎡 Roleta de Sorteios & Desafios</h2>
+          <p class="section-subtitle" style="margin-bottom: 1.5rem;">
+            Convide o público a girar a roleta! Sorteie brindes, perguntas extras, curiosidades científicas ou desafios ecológicos.
+          </p>
+          <div class="wheel-container">
+            <div class="wheel-pointer"></div>
+            <canvas id="wheel-canvas" width="440" height="440"></canvas>
+          </div>
+          <div>
+            <button id="wheel-spin-btn" class="btn-primary-glow" style="padding: 1rem 3rem; font-size: 1.15rem;">
+              <span>Girar a Roleta!</span> <span>🎯</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SEÇÃO 4: MURAL DE VISITANTES (LIVRO DE OURO)
+         ==================================================================== -->
+    <section id="section-mural" class="app-section">
+      <div class="mural-wrapper">
+        <div class="section-headline-group">
+          <span class="section-tagline">Livro de Visitas Digital</span>
+          <h2 class="section-title">Mural de Depoimentos & Presença</h2>
+          <p class="section-subtitle">
+            Deixe uma mensagem, feedback da avaliação ou um compromisso ecológico para ficar eternizado no estande do Grupo 2!
+          </p>
+        </div>
+
+        <div class="glass-panel" style="margin-bottom: 2rem;">
+          <form id="mural-form" style="display: grid; grid-template-columns: 1fr 2fr auto; gap: 0.75rem; align-items: center;">
+            <input type="text" id="mural-name" class="form-input" placeholder="Seu nome ou turma (ex: Profª. Silva)" maxlength="30" required>
+            <input type="text" id="mural-msg" class="form-input" placeholder="Seu recado ou compromisso sustentável..." maxlength="120" required>
+            <button type="submit" class="btn-primary-glow" style="padding: 0.8rem 1.6rem; font-size: 0.95rem;">
+              Assinar Mural ✨
+            </button>
+          </form>
+        </div>
+
+        <div id="mural-cards-container" class="mural-grid"></div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SEÇÃO 5: DOSSIÊ & ARTIGO CIENTÍFICO (EXPOSIÇÃO)
+         ==================================================================== -->
+    <section id="section-dossier" class="app-section">
+      <!-- Banner Hero com Imagem Gerada em Alta Resolução -->
+      <div class="dossier-hero-banner">
+        <img src="assets/hero.jpg" alt="Cidade Sustentável do Futuro" class="dossier-hero-img">
+        <div class="dossier-hero-overlay">
+          <span class="team-badge-pill" style="width: fit-content; margin-bottom: 0.5rem;">🌿 Dossiê Científico</span>
+          <h2 class="section-title" style="text-align: left; font-size: 2.2rem; margin-bottom: 0.35rem;">
+            Pilares da Engenharia & Cidade do Amanhã
+          </h2>
+          <p style="color: #cbd5e1; font-size: 1rem; max-width: 720px;">
+            Fundamentos apresentados na Feira Multidisciplinar Escolar 2026 sobre matriz limpa, economia circular e impacto visual.
+          </p>
+        </div>
+      </div>
+
+      <div class="exhibit-grid">
+        <div class="tilt-card">
+          <div style="font-size: 2rem; margin-bottom: 0.25rem;">⚡</div>
+          <h3 style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: #fff;">1. Transição Energética Limpa</h3>
+          <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.5;">
+            Substituição integral dos combustíveis fósseis por fontes solares, eólicas e biomassa para zerar as emissões líquidas de gases estufa até 2050.
+          </p>
+          <div style="margin-top: auto; font-size: 0.82rem; font-weight: 700; color: var(--accent-primary);">Meta: Redução de 45% do CO₂ até 2030</div>
+        </div>
+
+        <div class="tilt-card">
+          <div style="font-size: 2rem; margin-bottom: 0.25rem;">🔄</div>
+          <h3 style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: #fff;">2. Economia Circular & Resíduo Zero</h3>
+          <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.5;">
+            Materiais são concebidos para ciclos contínuos de regeneração e reciclagem, eliminando o descarte em aterros sanitários e o desperdício de matérias-primas.
+          </p>
+          <div style="margin-top: auto; font-size: 0.82rem; font-weight: 700; color: var(--accent-primary);">Princípio: Desperdício zero na indústria</div>
+        </div>
+
+        <div class="tilt-card">
+          <div style="font-size: 2rem; margin-bottom: 0.25rem;">🏙️</div>
+          <h3 style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: #fff;">3. Cidades Inteligentes (Smart Cities)</h3>
+          <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.5;">
+            Redes de sensores IoT, edifícios verdes bioclimáticos com captação pluvial e pavimentos drenantes que evitam inundações e recarregam aquíferos.
+          </p>
+          <div style="margin-top: auto; font-size: 0.82rem; font-weight: 700; color: var(--accent-primary);">Eficiência: Até 40% de economia urbana</div>
+        </div>
+
+        <div class="tilt-card">
+          <div style="font-size: 2rem; margin-bottom: 0.25rem;">🚲</div>
+          <h3 style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: #fff;">4. Mobilidade Urbana Elétrica</h3>
+          <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.5;">
+            Incentivo ao transporte público eletrificado, ciclovias conectadas e desenho urbano centrado no pedestre com menos poluição sonora e atmosférica.
+          </p>
+          <div style="margin-top: auto; font-size: 0.82rem; font-weight: 700; color: var(--accent-primary);">Benefício: Ar limpo e qualidade de vida</div>
+        </div>
+
+        <div class="tilt-card">
+          <div style="font-size: 2rem; margin-bottom: 0.25rem;">📸</div>
+          <h3 style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: #fff;">5. Fotografia & Conscientização</h3>
+          <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.5;">
+            A fotografia documental como ponte de sensibilização pública. Imagens fortes conectam os dados científicos à emoção humana, inspirando mudanças reais.
+          </p>
+          <div style="margin-top: auto; font-size: 0.82rem; font-weight: 700; color: var(--accent-primary);">Grupo 2: Narrativas visuais da feira</div>
+        </div>
+
+        <div class="tilt-card">
+          <div style="font-size: 2rem; margin-bottom: 0.25rem;">🌍</div>
+          <h3 style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: #fff;">6. Objetivos de Desenvolvimento Sustentável</h3>
+          <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.5;">
+            Alinhamento estrito às metas globais da ONU: ODS 7 (Energia Limpa), ODS 11 (Cidades Sustentáveis) e ODS 13 (Combate às Mudanças Climáticas).
+          </p>
+          <div style="margin-top: auto; font-size: 0.82rem; font-weight: 700; color: var(--accent-primary);">Agenda 2030: Compromisso com o amanhã</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====================================================================
+       MODAIS (LIGHTBOX, ROLETA & PAINEL ADMIN MASTER)
+       ==================================================================== -->
+
+  <!-- Lightbox de Fotos da Galeria & Totem -->
+  <div id="gallery-lightbox-modal" class="modal-backdrop hidden">
+    <div class="lightbox-content">
+      <div style="position: relative;">
+        <button id="lightbox-close-btn" class="modal-close-btn" style="position: absolute; top: 1rem; right: 1rem; z-index: 10; background: rgba(0,0,0,0.7); width: 36px; height: 36px; border-radius: 50%;">✕</button>
+        <img id="lightbox-target-img" src="" alt="Foto Ampliada" class="lightbox-img">
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 1.15rem 1.5rem; background: rgba(10, 15, 26, 0.95); flex-wrap: wrap; gap: 0.75rem;">
+        <div id="lightbox-caption-text" style="color: var(--text-main); font-weight: 600; font-size: 0.95rem;"></div>
+        <button id="lightbox-dl-btn" class="btn-download-pill" style="font-size: 0.88rem; padding: 0.5rem 1.25rem;">
+          Baixar Foto em Alta Resolução 📥
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal do Resultado da Roleta -->
+  <div id="wheel-result-modal" class="modal-backdrop hidden">
+    <div class="modal-content" style="text-align: center; max-width: 460px;">
+      <div style="font-size: 3.5rem; margin-bottom: 0.5rem;">🎉</div>
+      <h3 id="wheel-result-title" class="section-title" style="font-size: 1.6rem; color: #34d399; margin-bottom: 0.75rem;">
+        Prêmio Conquistado!
+      </h3>
+      <p id="wheel-result-desc" style="font-size: 1.05rem; color: #e2e8f0; margin-bottom: 1.75rem; line-height: 1.4;">
+        Descrição do resultado sorteado.
+      </p>
+      <button id="wheel-modal-close-btn" class="btn-primary-glow" style="display: inline-flex; margin: 0 auto;">
+        Continuar no Estande 🚀
+      </button>
+    </div>
+  </div>
+
+  <!-- PAINEL ADMIN MASTER COMPLETO (CONTROLE DE TUDO) -->
+  <div id="admin-modal" class="modal-backdrop hidden">
+    <div class="modal-content">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-glass); padding-bottom: 0.75rem;">
+        <div style="display: flex; align-items: center; gap: 0.6rem;">
+          <span style="font-size: 1.4rem;">⚙️</span>
+          <h3 style="font-family: var(--font-display); font-size: 1.35rem; font-weight: 800; color: #fff;">
+            Painel Admin Master &bull; EcoTech
+          </h3>
+        </div>
+        <button id="admin-modal-close-btn" class="modal-close-btn">✕</button>
+      </div>
+
+      <!-- Abas de Navegação Interna do Admin -->
+      <div class="admin-tabs-row">
+        <button class="admin-subtab-btn active" data-admintab="totem">📸 Totem (Drive)</button>
+        <button class="admin-subtab-btn" data-admintab="wheel">🎡 Roleta da Sorte</button>
+        <button class="admin-subtab-btn" data-admintab="doc">🎬 Documentário</button>
+        <button class="admin-subtab-btn" data-admintab="style">🎨 Cores & Estilo</button>
+        <button class="admin-subtab-btn" data-admintab="photos">🖼️ Bastidores</button>
+        <button class="admin-subtab-btn" data-admintab="info">📝 Dados do Projeto</button>
+        <button class="admin-subtab-btn" data-admintab="quiz">🏆 Quiz & Placar</button>
+      </div>
+
+      <!-- ABA 0: TOTEM DE FOTOS (GOOGLE DRIVE) -->
+      <div id="admin-tab-totem" class="admin-subtab-pane active">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+          <h4 style="color: var(--accent-primary); font-size: 1rem; font-weight: 700;">Totem de Fotos & Google Drive</h4>
+          <a href="https://drive.google.com/drive/folders/1do77ZCHIMN44w1IClJTKcGkkOVFV9eiG" target="_blank" class="ctrl-btn" style="color: #60a5fa; text-decoration: none; font-size: 0.8rem;">
+            Abrir Pasta no Google Drive ↗
+          </a>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+          Adicione as fotos capturadas no totem de papelão do estande para exibi-las em destaque no site:
+        </p>
+        <form id="admin-add-totem-photo-form" style="display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.5rem;">
+          <input type="text" id="admin-totem-name" class="form-input" placeholder="Título / Identificação (ex: Foto Oficial #003 - Turma 102)" required>
+          <div>
+            <label style="font-size: 0.78rem; color: var(--text-muted);">Carregar foto do computador:</label>
+            <input type="file" id="admin-totem-file" accept="image/*" class="form-input" style="padding: 0.4rem;">
+          </div>
+          <div>
+            <label style="font-size: 0.78rem; color: var(--text-muted);">Ou informe URL direta / link de imagem:</label>
+            <input type="text" id="admin-totem-url" class="form-input" placeholder="https://...">
+          </div>
+          <button type="submit" class="btn-primary-glow" style="align-self: flex-start; padding: 0.6rem 1.5rem; font-size: 0.88rem;">
+            Adicionar ao Totem 📸
+          </button>
+        </form>
+
+        <h4 style="color: var(--accent-primary); font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem;">Fotos no Totem</h4>
+        <div id="admin-totem-list"></div>
+      </div>
+
+      <!-- ABA 1: ROLETA DA SORTE -->
+      <div id="admin-tab-wheel" class="admin-subtab-pane">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+          <h4 style="color: var(--accent-primary); font-size: 1rem; font-weight: 700;">Customizar Roleta da Sorte</h4>
+          <button type="button" id="admin-reset-wheel-btn" class="ctrl-btn" style="font-size: 0.8rem;">
+            Restaurar Prêmios Originais 🔄
+          </button>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+          Configure os prêmios, doces, brindes ou desafios dos visitantes ao girar a roleta no estande:
+        </p>
+        <form id="admin-add-wheel-sector-form" style="display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.5rem;">
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 0.75rem;">
+            <input type="text" id="admin-wheel-label" class="form-input" placeholder="Nome no Disco (ex: Bombom, Eco-Brinde...)" required>
+            <select id="admin-wheel-color" class="form-input">
+              <option value="#10b981">Esmeralda</option>
+              <option value="#06b6d4">Ciano</option>
+              <option value="#3b82f6">Azul</option>
+              <option value="#a855f7">Roxo</option>
+              <option value="#f59e0b">Âmbar</option>
+              <option value="#ef4444">Rubi</option>
+              <option value="#14b8a6">Teal</option>
+              <option value="#ec4899">Rosa</option>
+            </select>
+          </div>
+          <input type="text" id="admin-wheel-desc" class="form-input" placeholder="Descrição do resultado (ex: Parabéns! Pegue um bombom na bancada!)" required>
+          <button type="submit" class="btn-primary-glow" style="align-self: flex-start; padding: 0.6rem 1.5rem; font-size: 0.88rem;">
+            Adicionar Setor à Roleta 🎡
+          </button>
+        </form>
+
+        <h4 style="color: var(--accent-primary); font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem;">Prêmios e Desafios Atuais</h4>
+        <div id="admin-wheel-list"></div>
+      </div>
+
+      <!-- ABA 2: CORES & ESTILO -->
+      <div id="admin-tab-style" class="admin-subtab-pane">
+        <h4 style="color: var(--accent-primary); font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem;">Paleta de Cores de Luxo</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+          Altere a cor de destaque da interface em tempo real com 1 clique:
+        </p>
+
+        <div class="color-swatch-picker">
+          <button class="color-swatch-btn selected" data-color="emerald" style="background: #10b981;" title="Verde Esmeralda"></button>
+          <button class="color-swatch-btn" data-color="cyan" style="background: #06b6d4;" title="Ciano Neon"></button>
+          <button class="color-swatch-btn" data-color="gold" style="background: #eab308;" title="Ouro Imperial"></button>
+          <button class="color-swatch-btn" data-color="violet" style="background: #a855f7;" title="Roxo Cyber"></button>
+          <button class="color-swatch-btn" data-color="blue" style="background: #3b82f6;" title="Azul Elétrico"></button>
+          <button class="color-swatch-btn" data-color="rose" style="background: #f43f5e;" title="Rubi Intenso"></button>
+        </div>
+      </div>
+
+      <!-- ABA 3: DOCUMENTÁRIO -->
+      <div id="admin-tab-doc" class="admin-subtab-pane">
+        <h4 style="color: var(--accent-primary); font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Configurar Documentário</h4>
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <div>
+            <label style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">Título da Apresentação</label>
+            <input type="text" id="admin-doc-title" class="form-input">
+          </div>
+          <div>
+            <label style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">Link do Vídeo (YouTube Embed ou MP4)</label>
+            <input type="text" id="admin-doc-url" class="form-input" placeholder="ex: https://www.youtube.com/embed/XXXXX">
+          </div>
+          <div>
+            <label style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">Sinopse Oficial</label>
+            <textarea id="admin-doc-synopsis" class="form-input" rows="3"></textarea>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+            <div>
+              <label style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">Equipe de Pesquisa</label>
+              <input type="text" id="admin-doc-team" class="form-input">
+            </div>
+            <div>
+              <label style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">Orientador</label>
+              <input type="text" id="admin-doc-orient" class="form-input">
+            </div>
+            <div>
+              <label style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">Escola</label>
+              <input type="text" id="admin-doc-school" class="form-input">
+            </div>
+            <div>
+              <label style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">Ano</label>
+              <input type="text" id="admin-doc-year" class="form-input">
+            </div>
+          </div>
+          <button id="admin-save-doc-btn" class="btn-primary-glow" style="align-self: flex-start; padding: 0.6rem 1.5rem; font-size: 0.88rem; margin-top: 0.5rem;">
+            Salvar Documentário 💾
+          </button>
+        </div>
+      </div>
+
+      <!-- ABA 4: FOTOS & BASTIDORES -->
+      <div id="admin-tab-photos" class="admin-subtab-pane">
+        <h4 style="color: var(--accent-primary); font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Adicionar Foto do Trabalho</h4>
+        <form id="admin-add-photo-form" style="display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.5rem;">
+          <input type="text" id="admin-photo-title" class="form-input" placeholder="Título da Foto (ex: Montagem da Maquete)" required>
+          <select id="admin-photo-category" class="form-input">
+            <option value="planejamento">Planejamento & Ideação</option>
+            <option value="construcao">Construção do Protótipo</option>
+            <option value="feira">Montagem do Estande</option>
+          </select>
+          <input type="text" id="admin-photo-caption" class="form-input" placeholder="Legenda explicativa curta..." required>
+          <div>
+            <label style="font-size: 0.78rem; color: var(--text-muted);">Carregar arquivo do seu computador:</label>
+            <input type="file" id="admin-photo-file" accept="image/*" class="form-input" style="padding: 0.4rem;">
+          </div>
+          <div>
+            <label style="font-size: 0.78rem; color: var(--text-muted);">Ou informe uma URL de imagem:</label>
+            <input type="text" id="admin-photo-url" class="form-input" placeholder="https://...">
+          </div>
+          <button type="submit" class="btn-primary-glow" style="align-self: flex-start; padding: 0.6rem 1.5rem; font-size: 0.88rem;">
+            Adicionar à Galeria 📸
+          </button>
+        </form>
+
+        <h4 style="color: var(--accent-primary); font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem;">Fotos Cadastradas</h4>
+        <div id="admin-gallery-list"></div>
+      </div>
+
+      <!-- ABA 5: DADOS DO PROJETO -->
+      <div id="admin-tab-info" class="admin-subtab-pane">
+        <h4 style="color: var(--accent-primary); font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Informações do Estande</h4>
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <div>
+            <label style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">Título Principal</label>
+            <input type="text" id="admin-input-title" class="form-input">
+          </div>
+          <div>
+            <label style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">Subtítulo</label>
+            <input type="text" id="admin-input-subtitle" class="form-input">
+          </div>
+          <div>
+            <label style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">Grupo</label>
+            <input type="text" id="admin-input-group" class="form-input">
+          </div>
+          <div>
+            <label style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">Integrantes da Equipe</label>
+            <input type="text" id="admin-input-team" class="form-input">
+          </div>
+          <button id="admin-save-info-btn" class="btn-primary-glow" style="align-self: flex-start; padding: 0.6rem 1.5rem; font-size: 0.88rem; margin-top: 0.5rem;">
+            Salvar Identificação 💾
+          </button>
+        </div>
+      </div>
+
+      <!-- ABA 6: QUIZ & PLACAR -->
+      <div id="admin-tab-quiz" class="admin-subtab-pane">
+        <div style="display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+          <button id="admin-clear-rank-btn" class="ctrl-btn" style="border-color: rgba(244, 63, 94, 0.4); color: #fb7185;">
+            Zerar Placar de Visitantes 🗑️
+          </button>
+          <button id="admin-reset-questions-btn" class="ctrl-btn">
+            Restaurar Perguntas Originais 🔄
+          </button>
+        </div>
+        <h4 style="color: var(--accent-primary); font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem;">Perguntas Cadastradas</h4>
+        <div id="admin-questions-list"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal de Autenticação com Senha ('mundoverde2') -->
+  <!-- Modal do Cartaz de QR Code da Feira (1 Folha A4 ou Dividido em 2 Folhas A4) -->
+  <div id="poster-modal" class="modal-backdrop hidden">
+    <div class="modal-content" style="max-width: 680px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; border-bottom: 1px solid var(--border-glass); padding-bottom: 0.75rem;">
+        <div style="display: flex; align-items: center; gap: 0.6rem;">
+          <span style="font-size: 1.5rem;">🖨️</span>
+          <h3 style="font-family: var(--font-display); font-size: 1.35rem; font-weight: 800; color: #fff;">
+            Cartaz do QR Code para o Estande
+          </h3>
+        </div>
+        <button id="poster-modal-close-btn" class="modal-close-btn">✕</button>
+      </div>
+
+      <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.25rem; line-height: 1.5;">
+        Imprima o cartaz oficial para colocar no seu estande de papelão! Os visitantes poderão apontar a câmera de qualquer celular (iPhone, Samsung, Motorola) para abrir o site, fotos do totem e minigames na hora.
+      </p>
+
+      <!-- Seletor de Formato do Cartaz -->
+      <div style="margin-bottom: 1.25rem;">
+        <label style="display: block; font-size: 0.8rem; font-weight: 700; color: var(--text-pure); margin-bottom: 0.4rem;">
+          Escolha o Formato de Impressão:
+        </label>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <button type="button" id="poster-mode-single-btn" class="poster-mode-btn active">
+            <span style="font-size: 1.4rem;">📄</span>
+            <div>
+              <strong>1 Folha A4</strong>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">Cartaz completo em 1 folha</div>
+            </div>
+          </button>
+          <button type="button" id="poster-mode-split-btn" class="poster-mode-btn">
+            <span style="font-size: 1.4rem;">📑</span>
+            <div>
+              <strong>2 Folhas A4 (GIGANTE)</strong>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">QR Code cortado e unido com fita</div>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Configuração de Endereço/Link do Estande -->
+      <div style="margin-bottom: 1.25rem;">
+        <label for="poster-url-input" style="display: block; font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.35rem;">
+          Link que será aberto no celular ao escanear:
+        </label>
+        <div style="display: flex; gap: 0.5rem;">
+          <input type="text" id="poster-url-input" class="form-input" placeholder="http://...">
+          <button type="button" id="poster-update-url-btn" class="ctrl-btn" style="white-space: nowrap;">
+            Atualizar QR 🔄
+          </button>
+        </div>
+      </div>
+
+      <!-- Área de Pré-visualização do Cartaz -->
+      <div id="poster-preview-container" class="poster-preview-box">
+        <!-- Inserido dinamicamente via JS -->
+      </div>
+
+      <!-- Ações de Impressão e Download -->
+      <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap;">
+        <button type="button" id="btn-download-qr-img" class="ctrl-btn">
+          <span>Baixar Imagem PNG 📥</span>
+        </button>
+        <button type="button" id="btn-print-poster-action" class="btn-primary-glow">
+          <span>Imprimir Cartaz Agora 🖨️</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contêiner de Impressão Direta (Aparece somente no @media print) -->
+  <div id="print-poster-container" class="hidden"></div>
+
+  <!-- Modal de Autenticação com Senha ('mundoverde2') -->
+  <div id="admin-auth-modal" class="modal-overlay hidden">
+    <div class="glass-panel auth-modal-box">
+      <div class="auth-icon-badge">🔒</div>
+      <div class="auth-header">
+        <h3>Acesso Restrito da Equipe</h3>
+        <p>Área exclusiva para os expositores da Feira Escolar (Sophia Drumond & Miguel).</p>
+      </div>
+      <form id="admin-auth-form" class="auth-form">
+        <div class="auth-input-group">
+          <label for="admin-password-input">Digite a senha de administrador:</label>
+          <input type="password" id="admin-password-input" class="form-input" placeholder="Digite a senha..." autocomplete="current-password" required>
+        </div>
+        <div id="admin-auth-error" class="auth-error-msg hidden">Senha incorreta! Tente novamente.</div>
+        <div class="auth-actions">
+          <button type="button" id="admin-auth-close-btn" class="ctrl-btn">Cancelar</button>
+          <button type="submit" class="btn-primary-glow">Desbloquear Painel 🔓</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Rodapé de Luxo -->
+  <footer class="site-footer">
+    <span>EcoTech Luxury Edition &bull; Projeto de Estande Interativo para Feira Multidisciplinar Escolar 2026.</span>
+    <button id="secret-admin-trigger" class="secret-admin-btn" title="Acesso Restrito da Equipe">🔒</button>
+  </footer>
+
+  <!-- Scripts Modulares -->
+  <script src="js/audio.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/ecosort.js"></script>
+  <script src="js/simulator.js"></script>
+  <script src="js/wheel.js"></script>
+  <script src="js/qrcode.bundle.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

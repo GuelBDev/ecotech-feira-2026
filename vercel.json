@@ -1,0 +1,15 @@
+{
+  "name": "mundoverdecesc",
+  "version": 2,
+  "cleanUrls": true,
+  "routes": [
+    {
+      "src": "/admin",
+      "dest": "/index.html#admin"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ]
+}
