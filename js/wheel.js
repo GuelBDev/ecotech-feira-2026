@@ -1,6 +1,7 @@
 /**
  * Roleta Interativa de Desafios e Prêmios da Feira
- * Rotação fluida com Canvas 2D, som de catraca e física realista.
+ * Rotação fluida com Canvas 2D HiDPI, som de catraca, física realista e efeitos visuais.
+ * Projeto EcoTech - Feira Escolar 2026
  */
 
 const DEFAULT_WHEEL_SECTORS = [
@@ -18,7 +19,6 @@ class InteractiveWheel {
   constructor() {
     this.sectors = this.loadSectors();
     this.canvas = document.getElementById('wheel-canvas');
-    this.ctx = this.canvas ? this.canvas.getContext('2d') : null;
     this.spinBtn = document.getElementById('wheel-spin-btn');
     this.resultModal = document.getElementById('wheel-result-modal');
     this.resultTitle = document.getElementById('wheel-result-title');
@@ -29,11 +29,28 @@ class InteractiveWheel {
     this.angularVelocity = 0;
     this.isSpinning = false;
     this.lastSectorIndex = -1;
+    this.baseSize = 440;
 
     if (this.canvas) {
+      this.setupCanvas();
       this.initEvents();
       this.draw();
     }
+  }
+
+  setupCanvas() {
+    if (!this.canvas) return;
+    const dpr = Math.max(1, Math.min(3, window.devicePixelRatio || 1));
+    this.canvas.width = this.baseSize * dpr;
+    this.canvas.height = this.baseSize * dpr;
+    this.canvas.style.width = `${this.baseSize}px`;
+    this.canvas.style.height = `${this.baseSize}px`;
+    this.canvas.style.maxWidth = '100%';
+    this.canvas.style.aspectRatio = '1 / 1';
+
+    this.ctx = this.canvas.getContext('2d');
+    this.ctx.resetTransform();
+    this.ctx.scale(dpr, dpr);
   }
 
   loadSectors() {
@@ -66,25 +83,38 @@ class InteractiveWheel {
 
     if (this.resultCloseBtn) {
       this.resultCloseBtn.addEventListener('click', () => {
-        window.soundEngine.playClick();
+        if (window.soundEngine) window.soundEngine.playClick();
         this.resultModal?.classList.add('hidden');
       });
     }
+
+    // Fechar ao clicar no fundo do modal
+    if (this.resultModal) {
+      this.resultModal.addEventListener('click', (e) => {
+        if (e.target === this.resultModal) {
+          this.resultModal.classList.add('hidden');
+        }
+      });
+    }
+
+    window.addEventListener('resize', () => {
+      this.setupCanvas();
+      this.draw();
+    });
   }
 
   draw() {
-    if (!this.ctx) return;
-    const width = this.canvas.width;
-    const height = this.canvas.height;
-    const centerX = width / 2;
-    const centerY = height / 2;
-    const radius = width / 2 - 15;
+    if (!this.ctx || !this.canvas) return;
+    const size = this.baseSize;
+    const centerX = size / 2;
+    const centerY = size / 2;
+    const radius = size / 2 - 16;
     const numSectors = this.sectors.length;
     const arc = (2 * Math.PI) / numSectors;
 
-    this.ctx.clearRect(0, 0, width, height);
+    this.ctx.clearRect(0, 0, size, size);
 
-    // Borda externa brilhante
+    // Borda externa com neon glow
     this.ctx.save();
     this.ctx.beginPath();
     this.ctx.arc(centerX, centerY, radius + 8, 0, 2 * Math.PI);
@@ -95,7 +125,7 @@ class InteractiveWheel {
     this.ctx.stroke();
     this.ctx.restore();
 
-    // Desenho dos setores
+    // Setores da roleta
     for (let i = 0; i < numSectors; i++) {
       const sector = this.sectors[i];
       const startAngle = this.angle + i * arc;
@@ -110,23 +140,23 @@ class InteractiveWheel {
       this.ctx.lineWidth = 2;
       this.ctx.stroke();
 
-      // Texto do setor
+      // Rótulos nos setores
       this.ctx.save();
       this.ctx.translate(centerX, centerY);
       this.ctx.rotate(startAngle + arc / 2);
       this.ctx.textAlign = 'right';
       this.ctx.fillStyle = sector.textColor || '#ffffff';
-      this.ctx.font = 'bold 14px "Plus Jakarta Sans", sans-serif';
+      this.ctx.font = 'bold 13.5px "Plus Jakarta Sans", sans-serif';
       this.ctx.shadowColor = 'rgba(0,0,0,0.6)';
       this.ctx.shadowBlur = 4;
-      this.ctx.fillText(sector.label, radius - 25, 5);
+      this.ctx.fillText(sector.label, radius - 22, 5);
       this.ctx.restore();
     }
 
     // Pino central cromado
     this.ctx.save();
     this.ctx.beginPath();
-    this.ctx.arc(centerX, centerY, 30, 0, 2 * Math.PI);
+    this.ctx.arc(centerX, centerY, 32, 0, 2 * Math.PI);
     this.ctx.fillStyle = '#0f172a';
     this.ctx.fill();
     this.ctx.strokeStyle = '#10b981';
@@ -134,7 +164,7 @@ class InteractiveWheel {
     this.ctx.stroke();
 
     this.ctx.beginPath();
-    this.ctx.arc(centerX, centerY, 12, 0, 2 * Math.PI);
+    this.ctx.arc(centerX, centerY, 14, 0, 2 * Math.PI);
     this.ctx.fillStyle = '#10b981';
     this.ctx.fill();
     this.ctx.restore();
@@ -142,13 +172,13 @@ class InteractiveWheel {
 
   spin() {
     if (this.isSpinning) return;
-    window.soundEngine.playPop();
+    if (window.soundEngine) window.soundEngine.playPop();
     this.isSpinning = true;
     if (this.spinBtn) this.spinBtn.disabled = true;
 
-    // Velocidade inicial alta aleatória (entre 0.35 e 0.5 radianos/frame)
-    this.angularVelocity = 0.35 + Math.random() * 0.2;
-    this.deceleration = 0.988 + Math.random() * 0.003; // Fricção suave
+    // Velocidade inicial (entre 0.38 e 0.55 radianos/frame)
+    this.angularVelocity = 0.38 + Math.random() * 0.17;
+    this.deceleration = 0.988 + Math.random() * 0.003;
 
     this.animateSpin();
   }
@@ -157,16 +187,15 @@ class InteractiveWheel {
     this.angle += this.angularVelocity;
     this.angularVelocity *= this.deceleration;
 
-    // Identificar setor apontado pelo pino superior (ângulo de 270° ou -PI/2)
+    // Identificar setor apontado pelo pino superior (270° ou -PI/2)
     const numSectors = this.sectors.length;
     const arc = (2 * Math.PI) / numSectors;
     const normalizedAngle = (2 * Math.PI - (this.angle % (2 * Math.PI))) % (2 * Math.PI);
-    // Pino fica no topo (3 * Math.PI / 2)
-    const pointerAngle = (normalizedAngle + 3 * Math.PI / 2) % (2 * Math.PI);
+    const pointerAngle = (normalizedAngle + (3 * Math.PI) / 2) % (2 * Math.PI);
     const currentSectorIdx = Math.floor(pointerAngle / arc) % numSectors;
 
     if (currentSectorIdx !== this.lastSectorIndex) {
-      window.soundEngine.playWheelTick();
+      if (window.soundEngine) window.soundEngine.playWheelTick();
       this.lastSectorIndex = currentSectorIdx;
     }
 
@@ -182,7 +211,7 @@ class InteractiveWheel {
   }
 
   showResult(sector) {
-    window.soundEngine.playWin();
+    if (window.soundEngine) window.soundEngine.playWin();
 
     if (this.resultTitle) this.resultTitle.textContent = sector.label;
     if (this.resultDesc) this.resultDesc.textContent = sector.desc;
@@ -191,13 +220,11 @@ class InteractiveWheel {
       this.resultModal.classList.remove('hidden');
     }
 
-    // Efeito de confetes visuais simples
     this.triggerConfetti();
   }
 
   triggerConfetti() {
-    const container = document.querySelector('.wheel-container');
-    if (!container) return;
+    const container = document.querySelector('.wheel-container') || document.body;
 
     for (let i = 0; i < 35; i++) {
       const p = document.createElement('div');
@@ -214,4 +241,11 @@ class InteractiveWheel {
   }
 }
 
-window.interactiveWheel = new InteractiveWheel();
+// Inicializar quando DOM estiver pronto
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    window.interactiveWheel = new InteractiveWheel();
+  });
+} else {
+  window.interactiveWheel = new InteractiveWheel();
+}

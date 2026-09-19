@@ -1,12 +1,16 @@
 /**
  * EcoCity Simulator - Hiper-Realista em Tempo Real
  * Simulação física e visual de uma metrópole sustentável com tráfego animado,
- * partículas de fumaça procedural, turbinas 3D e atmosfera dinâmica.
+ * partículas de fumaça procedural, turbinas eólicas rotativas e atmosfera dinâmica.
+ * Renderizado em Canvas 2D HiDPI.
+ * Projeto EcoTech - Feira Escolar 2026
  */
 
 class RealisticCitySimulator {
   constructor() {
     this.demand = 500; // Demanda contínua em MW
+    this.logicalW = 640;
+    this.logicalH = 320;
 
     // Sliders
     this.solarSlider = document.getElementById('slider-solar');
@@ -45,18 +49,22 @@ class RealisticCitySimulator {
     });
 
     document.getElementById('preset-fossil')?.addEventListener('click', () => {
-      window.soundEngine.playPop();
+      if (window.soundEngine) window.soundEngine.playPop();
       this.setSliders(0, 0, 100, 420);
     });
 
     document.getElementById('preset-balanced')?.addEventListener('click', () => {
-      window.soundEngine.playPop();
+      if (window.soundEngine) window.soundEngine.playPop();
       this.setSliders(160, 140, 150, 70);
     });
 
     document.getElementById('preset-future')?.addEventListener('click', () => {
-      window.soundEngine.playCorrect();
+      if (window.soundEngine) window.soundEngine.playCorrect();
       this.setSliders(220, 180, 120, 0);
+    });
+
+    window.addEventListener('resize', () => {
+      this.setupCanvas();
     });
   }
 
@@ -115,7 +123,7 @@ class RealisticCitySimulator {
         this.statusEnergyBadge.textContent = `✅ Rede 100% Equilibrada`;
       } else {
         this.statusEnergyBadge.className = 'status-badge surplus';
-        this.statusEnergyBadge.textContent = `⚡ Superávit (+${totalGenerated - this.demand} MW Carregando Baterias)`;
+        this.statusEnergyBadge.textContent = `⚡ Superávit (+${totalGenerated - this.demand} MW Baterias)`;
       }
     }
 
@@ -159,10 +167,10 @@ class RealisticCitySimulator {
     const container = document.querySelector('.city-viewport');
     if (!container) return;
 
-    // Criar canvas em tela cheia da viewport
+    this.container = container;
+    container.innerHTML = '';
+
     this.canvas = document.createElement('canvas');
-    this.canvas.width = 640;
-    this.canvas.height = 320;
     this.canvas.style.width = '100%';
     this.canvas.style.height = '100%';
     this.canvas.style.display = 'block';
@@ -170,9 +178,8 @@ class RealisticCitySimulator {
     this.canvas.style.inset = '0';
     this.canvas.style.zIndex = '5';
 
-    container.innerHTML = '';
     container.appendChild(this.canvas);
-    this.ctx = this.canvas.getContext('2d');
+    this.setupCanvas();
 
     // Partículas de fumaça da chaminé
     this.smokeParticles = [];
@@ -195,10 +202,20 @@ class RealisticCitySimulator {
     requestAnimationFrame(animate);
   }
 
+  setupCanvas() {
+    if (!this.canvas) return;
+    const dpr = Math.max(1, Math.min(3, window.devicePixelRatio || 1));
+    this.canvas.width = this.logicalW * dpr;
+    this.canvas.height = this.logicalH * dpr;
+    this.ctx = this.canvas.getContext('2d');
+    this.ctx.resetTransform();
+    this.ctx.scale(dpr, dpr);
+  }
+
   renderFrame() {
     if (!this.ctx) return;
-    const w = this.canvas.width;
-    const h = this.canvas.height;
+    const w = this.logicalW;
+    const h = this.logicalH;
     const state = this.cityState || { solar: 160, wind: 140, fossil: 70, aqi: 60, happiness: 85 };
 
     this.ctx.clearRect(0, 0, w, h);
@@ -223,7 +240,7 @@ class RealisticCitySimulator {
     this.ctx.fillStyle = skyGrad;
     this.ctx.fillRect(0, 0, w, h);
 
-    // Sol brilhante (se solar > 50)
+    // Sol brilhante (se solar > 0)
     if (state.solar > 0) {
       const sunIntensity = Math.min(1, state.solar / 200);
       const sunGrad = this.ctx.createRadialGradient(80, 60, 5, 80, 60, 60);
@@ -246,7 +263,7 @@ class RealisticCitySimulator {
     this.ctx.lineTo(0, h);
     this.ctx.fill();
 
-    // 3. Rio de Água Cristalina / Hidroelétrica ao Fundo
+    // 3. Rio de Água Limpa / Hidroelétrica ao Fundo
     const riverGrad = this.ctx.createLinearGradient(0, 210, 0, h);
     riverGrad.addColorStop(0, '#0284c7');
     riverGrad.addColorStop(1, '#0f172a');
@@ -350,7 +367,7 @@ class RealisticCitySimulator {
     this.drawRealisticTurbine(110, 140, 65, this.windTurbineAngle);
     this.drawRealisticTurbine(60, 160, 50, this.windTurbineAngle * 1.15);
 
-    // 7. Rodovia e Ponte Elevada (Viaduto de Mobilidade Elétrica)
+    // 7. Rodovia e Ponte Elevada (Mobilidade Elétrica)
     this.ctx.fillStyle = '#0f172a';
     this.ctx.fillRect(0, 245, w, 28);
     this.ctx.strokeStyle = 'rgba(56, 189, 248, 0.3)';
@@ -366,7 +383,7 @@ class RealisticCitySimulator {
     this.ctx.stroke();
     this.ctx.setLineDash([]);
 
-    // Carros elétricos animados em tempo real
+    // Carros elétricos animados
     this.vehicles.forEach(v => {
       v.x += v.speed * v.dir;
       if (v.dir === 1 && v.x > w + 20) v.x = -20;
@@ -380,9 +397,9 @@ class RealisticCitySimulator {
 
       // Faróis
       if (v.dir === 1) {
-        this.ctx.fillStyle = '#fef08a'; // Farol dianteiro
+        this.ctx.fillStyle = '#fef08a';
         this.ctx.fillRect(v.x + 20, vy + 2, 3, 5);
-        this.ctx.fillStyle = '#ef4444'; // Lanterna traseira
+        this.ctx.fillStyle = '#ef4444';
         this.ctx.fillRect(v.x - 2, vy + 2, 2, 5);
       } else {
         this.ctx.fillStyle = '#fef08a';
@@ -400,7 +417,7 @@ class RealisticCitySimulator {
       this.ctx.fill();
     }
 
-    // 9. Névoa de Smog Atmosférico Realista (cobre a tela se o fóssil for alto)
+    // 9. Névoa de Smog Atmosférico Realista (se fóssil alto)
     if (state.aqi > 50) {
       const smogIntensity = Math.min(0.75, (state.aqi - 50) / 280);
       this.ctx.fillStyle = `rgba(100, 80, 60, ${smogIntensity})`;
@@ -444,4 +461,11 @@ class RealisticCitySimulator {
   }
 }
 
-window.ecoCitySimulator = new RealisticCitySimulator();
+// Inicializar quando DOM estiver pronto
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    window.ecoCitySimulator = new RealisticCitySimulator();
+  });
+} else {
+  window.ecoCitySimulator = new RealisticCitySimulator();
+}

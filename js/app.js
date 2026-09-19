@@ -692,14 +692,26 @@ class AppMasterController {
 
     // Zerar Placar e Restaurar Perguntas
     document.getElementById('admin-clear-rank-btn')?.addEventListener('click', () => {
-      if (confirm('Zerar o ranking de pontuações da feira?')) {
+      if (confirm('Zerar o ranking de pontuações do Quiz?')) {
         localStorage.removeItem('ecotech_highscores');
         if (window.quizManager) {
           window.quizManager.highScores = [];
           window.quizManager.renderLeaderboard();
         }
         window.soundEngine.playWrong();
-        alert('Ranking zerado!');
+        alert('Ranking do Quiz zerado!');
+      }
+    });
+
+    document.getElementById('admin-clear-ecosort-rank-btn')?.addEventListener('click', () => {
+      if (confirm('Zerar o ranking do minigame EcoSort Express?')) {
+        localStorage.removeItem('ecotech_ecosort_highscores');
+        if (window.ecoSortGame) {
+          window.ecoSortGame.highScores = [];
+          window.ecoSortGame.renderLeaderboard();
+        }
+        window.soundEngine?.playWrong();
+        alert('Ranking do EcoSort zerado!');
       }
     });
 
@@ -711,6 +723,38 @@ class AppMasterController {
         }
         window.soundEngine.playCorrect();
         alert('Perguntas restauradas!');
+      }
+    });
+
+    // Adicionar Nova Pergunta ao Quiz
+    document.getElementById('admin-add-question-form')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const title = document.getElementById('admin-q-title')?.value.trim();
+      const opt0 = document.getElementById('admin-q-opt-0')?.value.trim();
+      const opt1 = document.getElementById('admin-q-opt-1')?.value.trim();
+      const opt2 = document.getElementById('admin-q-opt-2')?.value.trim();
+      const opt3 = document.getElementById('admin-q-opt-3')?.value.trim();
+      const correctIdx = parseInt(document.getElementById('admin-q-correct')?.value || '0', 10);
+      const explanation = document.getElementById('admin-q-explanation')?.value.trim();
+
+      if (!title || !opt0 || !opt1 || !opt2 || !opt3 || !explanation) {
+        alert('Preencha todos os campos da pergunta!');
+        return;
+      }
+
+      if (window.quizManager) {
+        const newQ = {
+          question: title,
+          options: [opt0, opt1, opt2, opt3],
+          correct: correctIdx,
+          explanation: explanation
+        };
+        window.quizManager.questions.push(newQ);
+        window.quizManager.saveQuestions(window.quizManager.questions);
+        this.renderAdminQuestionsList();
+        document.getElementById('admin-add-question-form')?.reset();
+        window.soundEngine?.playCorrect();
+        alert('Pergunta cadastrada com sucesso no Quiz!');
       }
     });
   }
