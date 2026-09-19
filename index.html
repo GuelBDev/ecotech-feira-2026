@@ -81,17 +81,11 @@
       <button class="nav-tab-btn" data-tab="games">
         <span>🎮</span><span>Jogos</span>
       </button>
-      <button class="nav-tab-btn" data-tab="doc">
-        <span>🎬</span><span>Vídeo</span>
-      </button>
       <button class="nav-tab-btn" data-tab="mural">
         <span>💬</span><span>Mural</span>
       </button>
       <button class="nav-tab-btn" data-tab="dossier">
         <span>📚</span><span>Dossiê</span>
-      </button>
-      <button class="nav-tab-btn" data-tab="gallery">
-        <span>🖼️</span><span>Bastidores</span>
       </button>
     </div>
   </nav>
@@ -140,101 +134,7 @@
     </section>
 
     <!-- ====================================================================
-         SEÇÃO 1: DOCUMENTÁRIO & APRESENTAÇÃO GERAL
-         ==================================================================== -->
-    <section id="section-doc" class="app-section hidden">
-      <div class="section-headline-group">
-        <span class="section-tagline">Produção Audiovisual & Pesquisa</span>
-        <h2 class="section-title">O Futuro em Nossas Mãos: O Documentário</h2>
-        <p class="section-subtitle">
-          Apresentação institucional produzida pelo Grupo 2 para a Feira Multidisciplinar, explorando os desafios urbanos, as soluções de engenharia verde e a urgência da sustentabilidade.
-        </p>
-      </div>
-
-      <div class="glass-panel doc-cinema-container">
-        <!-- Frame do Player de Vídeo -->
-        <div class="doc-player-frame" id="doc-player-container">
-          <div id="doc-player-inner" style="width: 100%; height: 100%; position: relative;">
-            <div id="doc-placeholder" class="doc-video-placeholder">
-              <div class="doc-badge-live">DOCUMENTÁRIO OFICIAL</div>
-              <div class="doc-play-btn-pulse" id="doc-play-trigger">▶</div>
-              <h3 style="font-family: var(--font-display); font-size: 1.5rem; color: #fff; font-weight: 800; margin-bottom: 0.35rem;">
-                Assistir à Apresentação Completa
-              </h3>
-              <p style="font-size: 0.9rem; color: var(--text-muted); max-width: 480px;">
-                Clique para reproduzir o documentário institucional do projeto. (Link configurável no Painel Admin)
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Ficha Técnica e Sinopse -->
-        <div class="doc-info-side">
-          <div>
-            <span class="team-badge-pill" style="margin-bottom: 0.5rem;">🌿 Sinopse Executiva</span>
-            <h3 class="doc-film-title" id="doc-title-display">Engenharia, Cidade & Clima</h3>
-          </div>
-
-          <p class="doc-synopsis" id="doc-synopsis-display">
-            Uma jornada investigativa sobre como a engenharia sustentável, a transição para matrizes 100% renováveis e a conscientização visual coletiva transformam as cidades de polos de poluição em ecossistemas de vida, saúde e progresso.
-          </p>
-
-          <div class="doc-credits-grid">
-            <div class="doc-credit-box">
-              <span class="doc-credit-label">Pesquisa & Criação</span>
-              <span class="doc-credit-val" id="doc-credit-team">Grupo 2</span>
-            </div>
-            <div class="doc-credit-box">
-              <span class="doc-credit-label">Orientação</span>
-              <span class="doc-credit-val" id="doc-credit-orient">Coordenação Pedagógica</span>
-            </div>
-            <div class="doc-credit-box">
-              <span class="doc-credit-label">Instituição</span>
-              <span class="doc-credit-val" id="doc-credit-school">Sophia Drumond</span>
-            </div>
-            <div class="doc-credit-box">
-              <span class="doc-credit-label">Edição</span>
-              <span class="doc-credit-val" id="doc-credit-year">2026</span>
-            </div>
-          </div>
-
-          <div style="margin-top: 1rem;">
-            <button class="btn-primary-glow" onclick="window.appMaster.switchTab('gallery')">
-              <span>Ver Fotos dos Bastidores</span> <span>📸</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ====================================================================
-         SEÇÃO 2: BASTIDORES & GALERIA (MAKING OF DA FEIRA)
-         ==================================================================== -->
-    <section id="section-gallery" class="app-section">
-      <div class="section-headline-group">
-        <span class="section-tagline">Registro & Processo Criativo</span>
-        <h2 class="section-title">Bastidores & Making Of do Projeto</h2>
-        <p class="section-subtitle">
-          Veja o passo a passo de como nosso trabalho foi construído: desde as primeiras pesquisas e testes práticos até a montagem final do nosso estande.
-        </p>
-      </div>
-
-      <!-- Filtros de Categoria -->
-      <div class="gallery-filter-bar">
-        <button class="gallery-filter-btn active" data-filter="all">Todos os Registros (4)</button>
-        <button class="gallery-filter-btn" data-filter="planejamento">Planejamento & Ideação</button>
-        <button class="gallery-filter-btn" data-filter="construcao">Construção do Protótipo</button>
-        <button class="gallery-filter-btn" data-filter="feira">Montagem do Estande</button>
-      </div>
-
-      <!-- Grid de Fotos com Zoom e Lightbox -->
-      <div id="gallery-cards-grid" class="gallery-grid">
-        <!-- Renderizado dinamicamente via JavaScript -->
-      </div>
-    </section>
-
-    <!-- ====================================================================
-         SEÇÃO 3: ARENA DE JOGOS & INTERATIVIDADE
+         SEÇÃO: ARENA DE JOGOS & INTERATIVIDADE
          ==================================================================== -->
     <section id="section-games" class="app-section">
       <div class="section-headline-group">
@@ -571,7 +471,7 @@
     </section>
 
     <!-- ====================================================================
-         SEÇÃO 4: MURAL DE VISITANTES (LIVRO DE OURO)
+         SEÇÃO: MURAL DE VISITANTES (LIVRO DE OURO)
          ==================================================================== -->
     <section id="section-mural" class="app-section">
       <div class="mural-wrapper">
@@ -579,17 +479,28 @@
           <span class="section-tagline">Livro de Visitas Digital</span>
           <h2 class="section-title">Mural de Depoimentos & Presença</h2>
           <p class="section-subtitle">
-            Deixe uma mensagem, feedback da avaliação ou um compromisso ecológico para ficar eternizado no estande do Grupo 2!
+            Deixe sua mensagem, feedback da avaliação ou um compromisso ecológico para ficar registrado no estande do Grupo 2!
           </p>
         </div>
 
-        <div class="glass-panel" style="margin-bottom: 2rem;">
-          <form id="mural-form" style="display: grid; grid-template-columns: 1fr 2fr auto; gap: 0.75rem; align-items: center;">
-            <input type="text" id="mural-name" class="form-input" placeholder="Seu nome ou turma (ex: Profª. Silva)" maxlength="30" required>
-            <input type="text" id="mural-msg" class="form-input" placeholder="Seu recado ou compromisso sustentável..." maxlength="120" required>
-            <button type="submit" class="btn-primary-glow" style="padding: 0.8rem 1.6rem; font-size: 0.95rem;">
-              Assinar Mural ✨
-            </button>
+        <div class="glass-panel mural-form-card">
+          <h3 class="mural-form-title">
+            <span>✍️</span> Assinar o Mural do Estande
+          </h3>
+          <form id="mural-form" class="mural-form-box">
+            <div class="mural-field-group">
+              <label for="mural-name" class="mural-label">Seu Nome ou Turma:</label>
+              <input type="text" id="mural-name" class="form-input" placeholder="Ex: Profª. Mariana, Lucas (Turma 201), Jurado(a)..." maxlength="40" required>
+            </div>
+            <div class="mural-field-group">
+              <label for="mural-msg" class="mural-label">Seu Recado / Feedback Sustentável:</label>
+              <textarea id="mural-msg" class="form-input mural-textarea" placeholder="Deixe um comentário sobre a maquete, jogos ou seu compromisso com o meio ambiente..." maxlength="250" rows="3" required></textarea>
+            </div>
+            <div class="mural-form-actions">
+              <button type="submit" id="mural-submit-btn" class="btn-primary-glow mural-submit-btn">
+                <span>Publicar Depoimento</span> <span>✨</span>
+              </button>
+            </div>
           </form>
         </div>
 
@@ -727,9 +638,7 @@
       <div class="admin-tabs-row">
         <button class="admin-subtab-btn active" data-admintab="totem">📸 Totem (Drive)</button>
         <button class="admin-subtab-btn" data-admintab="wheel">🎡 Roleta da Sorte</button>
-        <button class="admin-subtab-btn" data-admintab="doc">🎬 Documentário</button>
         <button class="admin-subtab-btn" data-admintab="style">🎨 Cores & Estilo</button>
-        <button class="admin-subtab-btn" data-admintab="photos">🖼️ Bastidores</button>
         <button class="admin-subtab-btn" data-admintab="info">📝 Dados do Projeto</button>
         <button class="admin-subtab-btn" data-admintab="quiz">🏆 Quiz & Placar</button>
       </div>
@@ -746,7 +655,7 @@
           Adicione as fotos capturadas no totem de papelão do estande para exibi-las em destaque no site:
         </p>
         <form id="admin-add-totem-photo-form" style="display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.5rem;">
-          <input type="text" id="admin-totem-name" class="form-input" placeholder="Título / Identificação (ex: Foto Oficial #003 - Turma 102)" required>
+          <input type="text" id="admin-totem-name" class="form-input" placeholder="Título / Identificação (ex: Foto Oficial #001 - Turma 102)" required>
           <div>
             <label style="font-size: 0.78rem; color: var(--text-muted);">Carregar foto do computador:</label>
             <input type="file" id="admin-totem-file" accept="image/*" class="form-input" style="padding: 0.4rem;">
@@ -814,74 +723,6 @@
           <button class="color-swatch-btn" data-color="blue" style="background: #3b82f6;" title="Azul Elétrico"></button>
           <button class="color-swatch-btn" data-color="rose" style="background: #f43f5e;" title="Rubi Intenso"></button>
         </div>
-      </div>
-
-      <!-- ABA 3: DOCUMENTÁRIO -->
-      <div id="admin-tab-doc" class="admin-subtab-pane">
-        <h4 style="color: var(--accent-primary); font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Configurar Documentário</h4>
-        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-          <div>
-            <label style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">Título da Apresentação</label>
-            <input type="text" id="admin-doc-title" class="form-input">
-          </div>
-          <div>
-            <label style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">Link do Vídeo (YouTube Embed ou MP4)</label>
-            <input type="text" id="admin-doc-url" class="form-input" placeholder="ex: https://www.youtube.com/embed/XXXXX">
-          </div>
-          <div>
-            <label style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">Sinopse Oficial</label>
-            <textarea id="admin-doc-synopsis" class="form-input" rows="3"></textarea>
-          </div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
-            <div>
-              <label style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">Equipe de Pesquisa</label>
-              <input type="text" id="admin-doc-team" class="form-input">
-            </div>
-            <div>
-              <label style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">Orientador</label>
-              <input type="text" id="admin-doc-orient" class="form-input">
-            </div>
-            <div>
-              <label style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">Escola</label>
-              <input type="text" id="admin-doc-school" class="form-input">
-            </div>
-            <div>
-              <label style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">Ano</label>
-              <input type="text" id="admin-doc-year" class="form-input">
-            </div>
-          </div>
-          <button id="admin-save-doc-btn" class="btn-primary-glow" style="align-self: flex-start; padding: 0.6rem 1.5rem; font-size: 0.88rem; margin-top: 0.5rem;">
-            Salvar Documentário 💾
-          </button>
-        </div>
-      </div>
-
-      <!-- ABA 4: FOTOS & BASTIDORES -->
-      <div id="admin-tab-photos" class="admin-subtab-pane">
-        <h4 style="color: var(--accent-primary); font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;">Adicionar Foto do Trabalho</h4>
-        <form id="admin-add-photo-form" style="display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.5rem;">
-          <input type="text" id="admin-photo-title" class="form-input" placeholder="Título da Foto (ex: Montagem da Maquete)" required>
-          <select id="admin-photo-category" class="form-input">
-            <option value="planejamento">Planejamento & Ideação</option>
-            <option value="construcao">Construção do Protótipo</option>
-            <option value="feira">Montagem do Estande</option>
-          </select>
-          <input type="text" id="admin-photo-caption" class="form-input" placeholder="Legenda explicativa curta..." required>
-          <div>
-            <label style="font-size: 0.78rem; color: var(--text-muted);">Carregar arquivo do seu computador:</label>
-            <input type="file" id="admin-photo-file" accept="image/*" class="form-input" style="padding: 0.4rem;">
-          </div>
-          <div>
-            <label style="font-size: 0.78rem; color: var(--text-muted);">Ou informe uma URL de imagem:</label>
-            <input type="text" id="admin-photo-url" class="form-input" placeholder="https://...">
-          </div>
-          <button type="submit" class="btn-primary-glow" style="align-self: flex-start; padding: 0.6rem 1.5rem; font-size: 0.88rem;">
-            Adicionar à Galeria 📸
-          </button>
-        </form>
-
-        <h4 style="color: var(--accent-primary); font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem;">Fotos Cadastradas</h4>
-        <div id="admin-gallery-list"></div>
       </div>
 
       <!-- ABA 5: DADOS DO PROJETO -->

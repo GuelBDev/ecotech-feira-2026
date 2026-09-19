@@ -16,31 +16,16 @@ const THEME_PRESETS = {
 const OFFICIAL_SITE_URL = 'https://mundoverdecesc.vercel.app';
 const GOOGLE_DRIVE_FOLDER_URL = 'https://drive.google.com/drive/folders/1do77ZCHIMN44w1IClJTKcGkkOVFV9eiG';
 
-// Fotos iniciais do Totem (preparadas para receber as fotos da feira)
-const DEFAULT_TOTEM_PHOTOS = [
-  {
-    id: 'totem-001',
-    name: 'Foto Oficial #001 - Estande Sophia Drumond',
-    img: 'assets/hero.jpg',
-    date: 'Feira Multidisciplinar',
-    author: 'Visitantes no Totem'
-  },
-  {
-    id: 'totem-002',
-    name: 'Foto Oficial #002 - Desafio Sustentável',
-    img: 'assets/hero.jpg',
-    date: 'Feira Multidisciplinar',
-    author: 'Equipe e Jurados'
-  }
-];
+// Fotos do Totem iniciam vazias para receber apenas fotos reais tiradas no evento
+const DEFAULT_TOTEM_PHOTOS = [];
 
 class AppMasterController {
   constructor() {
-    this.currentTab = 'totem'; // Nova primeira aba em destaque!
+    this.currentTab = 'totem';
     this.currentGameSubtab = 'quiz';
     this.currentTheme = localStorage.getItem('ecotech_theme') || 'emerald';
     this.projectInfo = this.loadProjectInfo();
-    this.docInfo = this.loadDocInfo();
+    this.docInfo = this.loadDocInfo ? this.loadDocInfo() : null;
     this.totemPhotos = this.loadTotemPhotos();
     this.muralMessages = this.loadMuralMessages();
 
@@ -49,7 +34,7 @@ class AppMasterController {
     this.initGameSubnav();
     this.initTotemPhotos();
     this.initPosterManager();
-    this.initDocPlayer();
+    if (this.initDocPlayer) this.initDocPlayer();
     this.initMural();
     this.initAdminSecurity();
     this.initAdmin();
@@ -112,9 +97,14 @@ class AppMasterController {
   loadTotemPhotos() {
     const saved = localStorage.getItem('ecotech_totem_photos');
     if (saved) {
-      try { return JSON.parse(saved); } catch (e) {}
+      try {
+        const list = JSON.parse(saved);
+        if (Array.isArray(list)) {
+          return list.filter(p => p && p.id && !p.id.startsWith('totem-00'));
+        }
+      } catch (e) {}
     }
-    return [...DEFAULT_TOTEM_PHOTOS];
+    return [];
   }
 
   initTotemPhotos() {
@@ -396,20 +386,14 @@ class AppMasterController {
   loadMuralMessages() {
     const saved = localStorage.getItem('ecotech_mural_msgs');
     if (saved) {
-      try { return JSON.parse(saved); } catch (e) {}
+      try {
+        const list = JSON.parse(saved);
+        if (Array.isArray(list)) {
+          return list.filter(m => m && m.author !== 'Profª. Avaliadora' && m.author !== 'Lucas (Turma 201)');
+        }
+      } catch (e) {}
     }
-    return [
-      {
-        author: 'Profª. Avaliadora',
-        text: 'Achei o estande sensacional! A ideia do totem de fotos com o link no site facilitou demais.',
-        date: 'Hoje, 10:15'
-      },
-      {
-        author: 'Lucas (Turma 201)',
-        text: 'Bati 1450 no quiz com os 20 segundos! Muito legal a simulação da cidade sem poluição.',
-        date: 'Hoje, 11:30'
-      }
-    ];
+    return [];
   }
 
   initMural() {
@@ -419,6 +403,7 @@ class AppMasterController {
       e.preventDefault();
       const nameInput = document.getElementById('mural-name');
       const msgInput = document.getElementById('mural-msg');
+      const submitBtn = document.getElementById('mural-submit-btn');
 
       const author = nameInput.value.trim() || 'Visitante';
       const text = msgInput.value.trim();
@@ -435,6 +420,17 @@ class AppMasterController {
       localStorage.setItem('ecotech_mural_msgs', JSON.stringify(this.muralMessages));
       nameInput.value = '';
       msgInput.value = '';
+
+      if (submitBtn) {
+        const originalHtml = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<span>Depoimento Publicado! ✅</span>';
+        submitBtn.disabled = true;
+        setTimeout(() => {
+          submitBtn.innerHTML = originalHtml;
+          submitBtn.disabled = false;
+        }, 2000);
+      }
+
       this.renderMural();
     });
   }
@@ -444,15 +440,29 @@ class AppMasterController {
     if (!container) return;
 
     container.innerHTML = '';
+
+    if (this.muralMessages.length === 0) {
+      container.innerHTML = `
+        <div class="mural-empty-card">
+          <div style="font-size: 2.25rem; margin-bottom: 0.6rem;">💬</div>
+          <h4 style="color: #ffffff; font-size: 1.15rem; font-weight: 700; margin-bottom: 0.35rem;">Seja o primeiro a assinar o mural!</h4>
+          <p style="font-size: 0.88rem; color: var(--text-muted); max-width: 460px; margin: 0 auto;">
+            Preencha o formulário acima com seu nome e deixe um recado ou compromisso sustentável para a turma.
+          </p>
+        </div>
+      `;
+      return;
+    }
+
     this.muralMessages.forEach(msg => {
       const card = document.createElement('div');
       card.className = 'mural-card';
       card.innerHTML = `
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <span style="font-weight: 700; color: #fff;">${msg.author}</span>
-          <span style="font-size: 0.75rem; color: var(--text-subtle);">${msg.date}</span>
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem;">
+          <span style="font-weight: 700; color: #fff; font-size: 0.95rem;">${msg.author}</span>
+          <span style="font-size: 0.75rem; color: var(--text-subtle); white-space: nowrap;">${msg.date}</span>
         </div>
-        <p style="color: #cbd5e1; font-style: italic; font-size: 0.92rem;">"${msg.text}"</p>
+        <p style="color: #cbd5e1; font-style: italic; font-size: 0.92rem; line-height: 1.45;">"${msg.text}"</p>
       `;
       container.appendChild(card);
     });
