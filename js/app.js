@@ -364,6 +364,9 @@ class AppMasterController {
 
   initGameSubnav() {
     const subnavBtns = document.querySelectorAll('.games-subnav-btn');
+    const subnavContainer = document.getElementById('games-subnav');
+    const hintPill = document.getElementById('games-nav-hint');
+
     subnavBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         window.soundEngine.playClick();
@@ -375,11 +378,34 @@ class AppMasterController {
           pane.classList.toggle('active', pane.id === `game-subtab-${target}`);
         });
 
+        btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+
         if (target === 'wheel' && window.interactiveWheel) {
           setTimeout(() => window.interactiveWheel.draw(), 50);
         }
       });
     });
+
+    if (subnavContainer && hintPill) {
+      hintPill.addEventListener('click', () => {
+        window.soundEngine.playPop();
+        const maxScroll = subnavContainer.scrollWidth - subnavContainer.clientWidth;
+        if (subnavContainer.scrollLeft >= maxScroll - 20) {
+          subnavContainer.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          subnavContainer.scrollBy({ left: 160, behavior: 'smooth' });
+        }
+      });
+
+      subnavContainer.addEventListener('scroll', () => {
+        const maxScroll = subnavContainer.scrollWidth - subnavContainer.clientWidth;
+        if (subnavContainer.scrollLeft >= maxScroll - 20) {
+          hintPill.innerHTML = '<span>Início</span> <span class="hint-arrow-anim">⬅️</span>';
+        } else {
+          hintPill.innerHTML = '<span>Mais jogos</span> <span class="hint-arrow-anim">➡️</span>';
+        }
+      }, { passive: true });
+    }
   }
 
   // --- Mural de Visitantes ---

@@ -47,7 +47,7 @@
             <circle cx="50" cy="30" r="2.5" fill="#ffffff"/>
           </svg>
         </div>
-        <div>
+        <div class="brand-text-col">
           <h1 class="brand-title" id="project-title">
             EcoTech: <span class="highlight">Engenharia & Sustentabilidade</span>
           </h1>
@@ -145,20 +145,25 @@
         </p>
       </div>
 
-      <!-- Sub-navegador dos 4 Jogos -->
-      <div class="games-subnav">
-        <button class="games-subnav-btn active" data-gametab="quiz">
-          <span>🏆</span> EcoQuiz Show Pro
-        </button>
-        <button class="games-subnav-btn" data-gametab="sort">
-          <span>⚡</span> EcoSort Express (30s)
-        </button>
-        <button class="games-subnav-btn" data-gametab="city">
-          <span>🏙️</span> EcoCity Simulator
-        </button>
-        <button class="games-subnav-btn" data-gametab="wheel">
-          <span>🎡</span> Roleta da Sorte
-        </button>
+      <!-- Sub-navegador dos 4 Jogos com Indicador de Scroll -->
+      <div class="games-subnav-wrapper">
+        <div class="games-subnav" id="games-subnav">
+          <button class="games-subnav-btn active" data-gametab="quiz">
+            <span>🏆</span> EcoQuiz Show Pro
+          </button>
+          <button class="games-subnav-btn" data-gametab="sort">
+            <span>⚡</span> EcoSort Express (30s)
+          </button>
+          <button class="games-subnav-btn" data-gametab="city">
+            <span>🏙️</span> EcoCity Simulator
+          </button>
+          <button class="games-subnav-btn" data-gametab="wheel">
+            <span>🎡</span> Roleta da Sorte
+          </button>
+        </div>
+        <div class="games-nav-hint-pill" id="games-nav-hint" title="Deslize para ver mais jogos">
+          <span>Mais jogos</span> <span class="hint-arrow-anim">➡️</span>
+        </div>
       </div>
 
       <!-- JOGO 1: ECOQUIZ SHOW -->
