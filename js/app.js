@@ -365,6 +365,8 @@ class AppMasterController {
       }
     });
 
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     if (tabId === 'games' && this.currentGameSubtab === 'wheel' && window.interactiveWheel) {
       window.interactiveWheel.draw();
     }

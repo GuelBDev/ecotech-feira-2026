@@ -54,12 +54,22 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  width: 100%;
+}
+
 body {
   background-color: var(--bg-deep);
   color: var(--text-main);
   font-family: var(--font-body);
   line-height: 1.6;
   min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  max-width: 100vw;
   display: flex;
   flex-direction: column;
   background-image: 
@@ -67,9 +77,11 @@ body {
     radial-gradient(circle at 10% 40%, rgba(6, 182, 212, 0.05) 0%, transparent 45%),
     radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 45%),
     radial-gradient(circle at 50% 100%, rgba(10, 15, 26, 0.8) 0%, transparent 100%);
-  background-attachment: fixed;
+  background-attachment: scroll;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y pinch-zoom;
 }
 
 /* Utilitários */
@@ -1831,84 +1843,118 @@ body {
 }
 
 /* ==========================================================================
-   MOBILE-FIRST UX: OTIMIZAÇÃO RIGOROSA PARA SMARTPHONES (IPHONE, SAMSUNG, MOTOROLA)
+   MOBILE-FIRST UX: OTIMIZAÇÃO RIGOROSA PARA SMARTPHONES (IPHONE, SAMSUNG, MOTOROLA, XIAOMI)
    ========================================================================== */
 @media (max-width: 768px) {
-  /* Prevenção de rolagem lateral e ajustes de viewport */
-  html, body {
+  /* Fluidez de Scroll Nativo sem Bloqueios */
+  html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
     overflow-x: hidden;
     width: 100%;
+    max-width: 100vw;
     -webkit-overflow-scrolling: touch;
-    overscroll-behavior-y: none;
+    touch-action: pan-y pinch-zoom;
+    padding-top: env(safe-area-inset-top, 0px);
   }
 
-  /* Safe areas para telas com entalhe / Dynamic Island (iPhone) */
-  body {
-    padding-top: env(safe-area-inset-top);
-  }
-
-  /* Cabeçalho Compacto e Elegante de Smartphone */
+  /* Cabeçalho Compacto, Fixo e Leve */
   .site-header {
-    padding: 0.65rem 1rem;
+    padding: 0.55rem 0.75rem;
     position: sticky;
     top: 0;
-    z-index: 800;
+    z-index: 850;
+    background: rgba(4, 7, 13, 0.94);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .header-container {
-    gap: 0.5rem;
+    gap: 0.4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
   }
 
   .brand-section {
-    gap: 0.75rem;
+    gap: 0.55rem;
+    min-width: 0;
+    flex: 1;
+    display: flex;
+    align-items: center;
   }
 
   .brand-logo-frame {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: var(--radius-sm);
   }
 
   .brand-svg-logo {
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
   }
 
   .brand-title {
-    font-size: 1.15rem;
-    line-height: 1.15;
+    font-size: clamp(0.92rem, 3.8vw, 1.15rem);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .brand-subtitle-row {
     margin-top: 0.1rem;
-    gap: 0.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
   }
 
   .brand-subtitle {
-    font-size: 0.72rem;
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .team-badge-pill {
-    display: none; /* Ocultar textos longos do topo no celular para evitar poluição visual */
+    display: none;
   }
 
   .header-controls {
-    gap: 0.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex-shrink: 0;
   }
 
   .ctrl-btn {
-    padding: 0.45rem 0.65rem;
-    font-size: 0.78rem;
+    padding: 0.4rem 0.55rem;
+    font-size: 0.8rem;
     min-height: 38px;
+    border-radius: var(--radius-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .ctrl-label {
-    display: none; /* Em smartphone, ícones limpos otimizam espaço */
+    display: none;
   }
 
   /* ========================================================================
-     BARRA DE NAVEGAÇÃO INFERIOR FIXA (MOBILE DOCK ESTILO APP NATIVO)
-     Permite navegação total pelo polegar (Thumb-friendly UX)
+     BARRA DE NAVEGAÇÃO INFERIOR FIXA (MOBILE DOCK ULTRA-TOUCH)
      ======================================================================== */
   .navigation-bar {
     position: fixed;
@@ -1917,13 +1963,14 @@ body {
     right: 0;
     top: auto;
     margin: 0;
-    padding: 0.35rem 0.5rem calc(0.45rem + env(safe-area-inset-bottom, 10px)) 0.5rem;
+    padding: 0.3rem 0.3rem calc(0.35rem + env(safe-area-inset-bottom, 12px)) 0.3rem;
     z-index: 999;
-    background: rgba(4, 7, 13, 0.94);
+    background: rgba(4, 7, 13, 0.96);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.8);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.85);
+    width: 100%;
   }
 
   .nav-tabs-container {
@@ -1931,111 +1978,129 @@ body {
     border: none;
     box-shadow: none;
     padding: 0;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    gap: 0.2rem;
-    overflow-x: auto;
-    scrollbar-width: none;
-    max-width: 500px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2px;
+    width: 100%;
+    max-width: 100%;
     margin: 0 auto;
   }
 
   .nav-tab-btn {
-    flex: 1;
     min-width: 0;
-    padding: 0.45rem 0.2rem;
-    border-radius: var(--radius-md);
+    padding: 0.35rem 0.1rem;
+    border-radius: 8px;
+    display: flex;
     flex-direction: column;
-    gap: 0.2rem;
-    font-size: 0.72rem;
+    gap: 2px;
+    font-size: 0.65rem;
     font-weight: 700;
     text-align: center;
     white-space: nowrap;
     justify-content: center;
+    align-items: center;
     min-height: 48px;
     border: 1px solid transparent;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
 
   .nav-tab-btn span:first-child {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     line-height: 1;
   }
 
-  .nav-tab-btn.active {
-    background: rgba(16, 185, 129, 0.15);
-    border-color: var(--accent-primary);
-    color: var(--text-pure);
-    box-shadow: 0 0 15px var(--accent-glow);
+  .nav-tab-btn span:last-child {
+    font-size: 0.62rem;
+    line-height: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
   }
 
-  /* Padding inferior essencial no corpo principal para não sobrepor a barra fixa */
+  .nav-tab-btn.active {
+    background: rgba(16, 185, 129, 0.18);
+    border-color: var(--accent-primary);
+    color: var(--text-pure);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+
+  /* Padding inferior no corpo principal para não sobrepor a barra fixa */
   .main-content {
-    padding: 1.2rem 1rem calc(88px + env(safe-area-inset-bottom, 20px)) 1rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 0.85rem 0.75rem calc(80px + env(safe-area-inset-bottom, 20px)) 0.75rem;
+    overflow-x: hidden;
   }
 
   .site-footer {
-    padding-bottom: calc(95px + env(safe-area-inset-bottom, 20px));
-    font-size: 0.78rem;
+    padding: 1.5rem 1rem calc(90px + env(safe-area-inset-bottom, 20px)) 1rem;
+    font-size: 0.75rem;
+    line-height: 1.4;
   }
 
   /* Painéis de Vidro no Celular */
   .glass-panel {
-    padding: 1.35rem 1rem;
-    border-radius: var(--radius-lg);
+    padding: 1.15rem 0.85rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 1.25rem;
   }
 
   .section-headline-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
   }
 
   .section-title {
-    font-size: 1.65rem;
+    font-size: 1.4rem;
     line-height: 1.25;
+    letter-spacing: -0.01em;
   }
 
   .section-subtitle {
-    font-size: 0.9rem;
-    line-height: 1.5;
+    font-size: 0.85rem;
+    line-height: 1.45;
   }
 
   .section-tagline {
-    font-size: 0.72rem;
-    margin-bottom: 0.25rem;
+    font-size: 0.7rem;
+    margin-bottom: 0.2rem;
   }
 
   /* Totem de Fotos no Smartphone */
   .totem-banner-card {
-    padding: 1.4rem 1rem;
-    margin-bottom: 1.5rem;
-    gap: 1.25rem;
+    padding: 1.15rem 0.85rem;
+    margin-bottom: 1.25rem;
+    gap: 1rem;
   }
 
   .totem-banner-text h3 {
-    font-size: 1.3rem;
+    font-size: 1.15rem;
   }
 
   .totem-banner-text p {
-    font-size: 0.88rem;
+    font-size: 0.82rem;
+    line-height: 1.4;
   }
 
   .totem-action-bar {
     width: 100%;
     flex-direction: column;
-    gap: 0.65rem;
+    gap: 0.55rem;
   }
 
   .totem-action-bar button, .totem-action-bar a {
     width: 100%;
     justify-content: center;
-    padding: 0.85rem 1rem;
-    min-height: 48px;
-    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    min-height: 46px;
+    font-size: 0.88rem;
+    border-radius: var(--radius-md);
   }
 
   .totem-grid {
     grid-template-columns: 1fr;
-    gap: 1.25rem;
+    gap: 1rem;
   }
 
   .totem-photo-card {
@@ -2043,22 +2108,24 @@ body {
   }
 
   .totem-img-wrap {
-    height: 250px;
+    height: 220px;
   }
 
   .totem-action-icon-btn {
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
   }
 
   /* Documentário no Smartphone */
   .doc-player-frame {
     aspect-ratio: 16 / 9;
+    border-radius: var(--radius-md);
+    width: 100%;
   }
 
   .doc-credits-grid {
     grid-template-columns: 1fr 1fr;
-    gap: 0.6rem;
+    gap: 0.5rem;
   }
 
   /* Arena de Jogos no Smartphone */
@@ -2067,190 +2134,228 @@ body {
     flex-wrap: nowrap;
     overflow-x: auto;
     justify-content: flex-start;
-    padding-bottom: 0.5rem;
-    gap: 0.5rem;
+    padding-bottom: 0.4rem;
+    gap: 0.4rem;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
   }
 
   .games-subnav::-webkit-scrollbar { display: none; }
 
   .games-subnav-btn {
-    padding: 0.6rem 1rem;
-    font-size: 0.85rem;
+    padding: 0.55rem 0.85rem;
+    font-size: 0.82rem;
     white-space: nowrap;
     flex-shrink: 0;
-    min-height: 46px;
+    min-height: 44px;
+    border-radius: var(--radius-sm);
   }
 
-  /* EcoQuiz no Smartphone (Botões Grandões e Leitura Clara) */
+  /* EcoQuiz no Smartphone */
   .quiz-hero-card {
-    padding: 2.25rem 1rem;
+    padding: 1.75rem 0.85rem;
   }
 
   .quiz-hero-icon {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 
   .quiz-question-card {
     min-height: auto;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
+    padding: 1.15rem 0.85rem;
   }
 
   .quiz-question-text {
-    font-size: 1.2rem;
-    line-height: 1.45;
+    font-size: 1.1rem;
+    line-height: 1.4;
   }
 
   .quiz-options-grid {
-    gap: 0.75rem;
+    gap: 0.65rem;
   }
 
   .quiz-opt-btn {
-    padding: 1rem 1rem;
-    font-size: 0.95rem;
-    gap: 0.85rem;
-    min-height: 54px;
+    padding: 0.85rem 0.85rem;
+    font-size: 0.9rem;
+    gap: 0.75rem;
+    min-height: 50px;
+    border-radius: var(--radius-md);
   }
 
   .opt-badge {
-    width: 32px;
-    height: 32px;
-    font-size: 0.88rem;
+    width: 30px;
+    height: 30px;
+    font-size: 0.85rem;
   }
 
   /* EcoCity Simulator no Smartphone */
   .simulator-layout {
     grid-template-columns: 1fr;
-    gap: 1.25rem;
+    gap: 1rem;
   }
 
   .city-viewport {
-    height: 230px;
+    height: 200px;
+    max-width: 100%;
+    touch-action: pan-y;
   }
 
   .city-metrics-grid {
     grid-template-columns: 1fr 1fr;
-    gap: 0.6rem;
+    gap: 0.5rem;
   }
 
   .metric-box {
-    padding: 0.75rem 0.85rem;
+    padding: 0.65rem 0.75rem;
   }
 
   .metric-val {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
   }
 
   /* Roleta da Sorte no Smartphone */
   .wheel-container {
-    margin: 1rem auto;
+    margin: 0.75rem auto;
     display: flex;
     justify-content: center;
+    align-items: center;
+    touch-action: pan-y;
   }
 
   #wheel-canvas {
-    max-width: min(320px, 88vw);
-    max-height: min(320px, 88vw);
+    max-width: min(280px, 78vw);
+    max-height: min(280px, 78vw);
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    touch-action: pan-y;
   }
 
   #wheel-spin-btn {
     width: 100%;
-    padding: 1rem 1.5rem;
-    min-height: 52px;
-    font-size: 1.1rem;
+    padding: 0.9rem 1.25rem;
+    min-height: 50px;
+    font-size: 1.05rem;
+    border-radius: var(--radius-md);
   }
 
   /* EcoSort no Smartphone */
   .sort-stats-bar {
-    padding: 0.65rem 1rem;
+    padding: 0.55rem 0.85rem;
   }
 
   .sort-deck-area {
-    min-height: 230px;
+    min-height: 210px;
+    touch-action: pan-y;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .sort-card {
-    width: 100%;
-    max-width: 290px;
-    height: 210px;
-    padding: 1.25rem;
+    width: calc(100% - 20px);
+    max-width: 275px;
+    height: 195px;
+    padding: 1rem;
+    touch-action: pan-y;
   }
 
   .sort-actions-row {
-    gap: 0.75rem;
+    gap: 0.6rem;
   }
 
   .sort-action-btn {
-    padding: 1.1rem 0.75rem;
-    font-size: 0.95rem;
-    min-height: 54px;
+    padding: 0.95rem 0.6rem;
+    font-size: 0.9rem;
+    min-height: 50px;
+    border-radius: var(--radius-md);
   }
 
   /* Prevenção de Auto-Zoom no Safari do iPhone ao digitar */
   .form-input, select.form-input, textarea.form-input {
     font-size: 16px !important;
-    padding: 0.8rem 1rem;
+    padding: 0.75rem 0.85rem;
+    border-radius: var(--radius-sm);
   }
 
   /* Modais no Smartphone */
-  .modal-content {
-    padding: 1.5rem 1.15rem;
-    max-height: 88vh;
+  .modal-backdrop, .modal-overlay {
+    padding: 0.65rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-content, .auth-modal-box {
+    padding: 1.25rem 0.95rem;
+    max-width: 100%;
+    width: calc(100vw - 20px);
+    max-height: calc(100dvh - 28px);
     border-radius: var(--radius-lg);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .auth-modal-box {
-    padding: 1.75rem 1.25rem;
+    padding: 1.5rem 1rem;
   }
 
   /* Dossiê & Mural no Smartphone */
   .dossier-hero-banner {
-    height: 230px;
-    margin-bottom: 1.5rem;
+    height: 190px;
+    margin-bottom: 1.25rem;
   }
 
   .dossier-hero-overlay {
-    padding: 1.25rem;
+    padding: 1rem;
   }
 
   .exhibit-grid {
     grid-template-columns: 1fr;
-    gap: 1.25rem;
+    gap: 1rem;
   }
 
   .mural-grid {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 0.85rem;
   }
 
   .gallery-grid {
     grid-template-columns: 1fr;
-    gap: 1.25rem;
+    gap: 1rem;
   }
 
   .gallery-img-container {
-    height: 210px;
+    height: 195px;
   }
 }
 
-/* Telas muito estreitas (ex: Moto E, iPhone SE antigo, 360px) */
+/* Telas muito estreitas (ex: Moto E, iPhone SE, 320px - 360px) */
 @media (max-width: 380px) {
   .brand-title {
-    font-size: 1.05rem;
+    font-size: 0.95rem;
   }
   .nav-tab-btn {
-    font-size: 0.65rem;
+    font-size: 0.6rem;
+    padding: 0.25rem 0.05rem;
   }
   .nav-tab-btn span:first-child {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
+  }
+  .nav-tab-btn span:last-child {
+    font-size: 0.58rem;
   }
   .section-title {
-    font-size: 1.45rem;
+    font-size: 1.25rem;
   }
   #wheel-canvas {
-    max-width: 275px;
-    max-height: 275px;
+    max-width: 250px;
+    max-height: 250px;
+  }
+  .sort-card {
+    height: 185px;
+    max-width: 260px;
   }
 }
 
